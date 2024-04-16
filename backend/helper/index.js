@@ -1,12 +1,16 @@
 const UserModel = require("../model/user")
 
-const ExistEmail = async (email) => {
+const ExistUser = async (type, typeValue) => {
+    if (await type === "mobile") {
+        const check = await UserModel.findOne({ phone: typeValue })
+        return (check) ? true : false;
+    }
+    const check = await UserModel.findOne({ email: typeValue })
+    return (check) ? true : false;
 
-    const checkemail = await UserModel.findOne({ email })
-    return (checkemail) ? true : false;
 
 }
 
 
 
-module.exports =  ExistEmail 
+module.exports = ExistUser

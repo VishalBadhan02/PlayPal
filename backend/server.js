@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 const UserModel = require("./model/user")
 const Config = require("./config/index");
-const { ExistEmail } = require("./helper");
+const ExistUser = require("./helper");
 
 mongoose.connect(Config.DATABASE.URL);
 const db = mongoose.connection;
@@ -23,22 +23,33 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/register", async (req, res) => {
-    const { firstName, lastName, userName, phoneNumber, email, address, password } = req.body;
+    const { firstName, lastName, userName, type, typeValue, address, password } = req.body;
 
-    if (await ExistEmail(email)) {
-        return res.json({ status: true, msg: "Email already exists" });
+    if (await ExistUser(type, typeValue)) {
+        return res.json({
+            msg: type + " already exists"
+        })
     }
-    console.log(req.body);
-    const user = new UserModel({
-        firstName, lastName, userName, phoneNumber, email, address, password
-    })
 
 
-
-
-    console.log(user);
-    user.save();
-    res.send("registered")
+    if (type === "mobile") {
+        const user = new UserModel({
+            firstName, lastName, userName, type, phone: typeValue, address, password
+        })
+        user.save()
+        return res.json({
+            msg: "registered by " + type
+        })
+    }
+    else {
+        const user = new UserModel({
+            firstName, lastName, userName, type, email: typeValue, address, password
+        })
+        user.save()
+        return res.json({
+            msg: "registered by " + type
+        })
+    }
 })
 
 app.post("/login", async (req, res) => {
