@@ -7,9 +7,11 @@ const mongoose = require("mongoose");
 const UserModel = require("./model/user")
 const Config = require("./config/index");
 const ExistUser = require("./helper");
+const { generateJWT } = require("./services/JWT");
 
 mongoose.connect(Config.DATABASE.URL);
 const db = mongoose.connection;
+
 
 db.on("open", () => {
     console.log("db connected")
@@ -23,7 +25,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/register", async (req, res) => {
-    const { firstName, lastName, userName, type, typeValue, address, password } = req.body;
+    const { firstName, lastName, userName, type, typeValue, address, password, oneTimePassword } = req.body;
 
     if (await ExistUser(type, typeValue)) {
         return res.json({
@@ -31,23 +33,29 @@ app.post("/register", async (req, res) => {
         })
     }
 
-
     if (type === "mobile") {
         const user = new UserModel({
-            firstName, lastName, userName, type, phone: typeValue, address, password
+            firstName, lastName, userName, type, phone: typeValue, address, password, oneTimePassword
         })
-        user.save()
+        user.save();
+
+        const token = generateJWT(user);
         return res.json({
+            status: true,
             msg: "registered by " + type
+            , token
         })
     }
     else {
         const user = new UserModel({
-            firstName, lastName, userName, type, email: typeValue, address, password
+            firstName, lastName, userName, type, email: typeValue, address, password, oneTimePassword
         })
-        user.save()
+        user.save();
+        const token = generateJWT(user);
         return res.json({
+            status: true,
             msg: "registered by " + type
+            , token
         })
     }
 })
@@ -55,9 +63,6 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
     const { email, password } = req.body
     const user = await UserModel.findOne({ email })
-
-
-
 
     if (!user) {
         return (
@@ -75,12 +80,28 @@ app.post("/login", async (req, res) => {
 
 })
 
+app.post("/otpverify", async (req, res) => {
+    const { oneTimePassword } = req.body
+    const user = await UserModel.findOne({ oneTimePasswordl })
+
+    if (user.oneTimePassword !== oneTimePassword) {
+        return (
+            res.json({ msg: "incorrect otp please try again" })
+
+        )
+    }
+
+    res.send("Otp verified")
+
+})
+
+
 app.post("/", (req, res) => {
     res.send("Server working")
 })
 
 
 const server = http.createServer({}, app)
-server.listen(5050, Config.HOST, () => {
+server.listen(Config.PORT, Config.HOST, () => {
     console.log("server is working " + Config.PORT)
 });

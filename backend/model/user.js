@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
         default: "email"
     },
     address: String,
-    password: String
+    password: String,
+    oneTimePassword: Number
 },
     { timestamps: true })
 
