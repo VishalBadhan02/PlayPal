@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose")
+const { mongoose } = require("mongoose")
 
 const userSchema = mongoose.Schema({
     firstName: String,
@@ -12,7 +12,6 @@ const userSchema = mongoose.Schema({
     },
     address: String,
     password: String,
-    oneTimePassword: Number
 },
     { timestamps: true })
 

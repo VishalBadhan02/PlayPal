@@ -1,24 +1,20 @@
-const jwt = require("jsonwebtoken");
-const Config = require("../config");
+const jwt = require('jsonwebtoken');
+const Config = require('../config/index')
 
-const generateJWT = (user) => {
-    const token = jwt.sign(user.toObject(), Config.JWTSECRETKEY);
+const generateToken = (user) => {
+    const token = jwt.sign(user.toObject(), Config.JWTSECRETKEY)
     return token;
 }
-
-
 
 const verifyJWT = (req, res, next) => {
     const token = req?.headers?.authorization;
     if (!token) {
-        res.json({ status: false, msg: "JWT Token Not Found!" });
-
+        return res.json({ status: false, msg: "Token not verified" })
     }
 
     const decoded = jwt.verify(token, Config.JWTSECRETKEY);
     if (!decoded) {
-        res.json({ status: false, msg: "Token Wrong or Expired" });
-
+        return res.json({ status: false, msg: "token wrong or expired" })
     }
 
     req.user = decoded;
@@ -27,5 +23,6 @@ const verifyJWT = (req, res, next) => {
 }
 
 module.exports = {
-    generateJWT, verifyJWT
+    generateToken, verifyJWT
 }
+
