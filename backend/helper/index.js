@@ -17,11 +17,11 @@ const ExistUser = async (type, typeValue) => {
 
 const generateOTP = async (userId, comment) => {
     const oneTimePassword = Math.floor(Math.random(0) * (10000 - 999 + 1) + 999);
-    oneTimePassword == oneTimePassword.toString();
+    setoneTimePassword = oneTimePassword.toString();
 
     const OTPModule = new OTPModel();
     OTPModule.userId = userId;
-    OTPModule.otp = oneTimePassword;
+    OTPModule.otp = setoneTimePassword;
     OTPModule.comment = comment;
     OTPModule.expiredate = moment(new Date()).add(10, 'minutes').toDate();
     OTPModule.save()
@@ -35,7 +35,7 @@ const verifyOTP = async (userId, otp) => {
     if (!OTPModule) {
         return "otp wrong or expired"
     }
-    
+
     return true;
 
 }

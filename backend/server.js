@@ -4,11 +4,10 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose");
 
-const UserModel = require("./model/user")
+
 const Config = require("./config/index");
-const ExistUser = require("./helper");
-const { generateJWT, verifyJWT } = require("./services/JWT");
 const AuthRouter = require('./routes/auth');
+const UserRouter = require('./routes/user');
 
 mongoose.connect(Config.DATABASE.URL);
 const db = mongoose.connection;
@@ -27,7 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use('/auth', AuthRouter);
-
+app.use('/user', UserRouter)
+app.use('/college', UserRouter)
 
 
 app.post("/", (req, res) => {
