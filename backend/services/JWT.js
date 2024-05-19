@@ -13,6 +13,7 @@ const verifyJWT = (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, Config.JWTSECRETKEY);
+    console.log("Decoded JWT token data:", decoded);
     if (!decoded) {
         return res.json({ status: false, msg: "token wrong or expired" })
     }

@@ -4,15 +4,13 @@ const moment = require("moment")
 const reply = require('./reply');
 const lang = require('../language/en');
 
-const ExistUser = async (type, typeValue) => {
+const ExistUser = async (email) => {
     if (await type === "mobile") {
-        const check = await UserModel.findOne({ phone: typeValue })
+        const check = await UserModel.findOne({ email })
         return (check) ? true : false;
     }
     const check = await UserModel.findOne({ email: typeValue })
     return (check) ? true : false;
-
-
 }
 
 const generateOTP = async (userId, comment) => {
@@ -30,13 +28,15 @@ const generateOTP = async (userId, comment) => {
 
 const verifyOTP = async (userId, otp) => {
 
-    const OTPModule = await OTPModel.findOne({ userId, otp });
-
-    if (!OTPModule) {
-        return "otp wrong or expired"
+    const OTPRecord = await OTPModel.findOne({ userId: userId }).sort({ "createdAt": "desc" });
+    console.log(OTPRecord)
+    if (OTPRecord.otp === otp) {
+        return { status: true, msg: "otp verified successfully" }
     }
-
-    return true;
+    if (!OTPRecord) {
+        console.log(OTPRecord)
+        return { status: false, msg: "otp not found" }
+    }
 
 }
 

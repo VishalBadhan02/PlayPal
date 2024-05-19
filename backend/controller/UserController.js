@@ -6,7 +6,7 @@ const { CollegeModel } = require("../model/college")
 
 const getProfile = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ _id: req.user.decoded._id }).select(['email', 'userName', 'createdAt'])
+        const user = await UserModel.findOne({ _id: req.user.decoded._id }).select(['email', 'userName', 'createdAt','address','phoneNumber'])
         if (!user) {
             console.log(user)
             return res.status(402).json(reply.failure("User not exist "));
