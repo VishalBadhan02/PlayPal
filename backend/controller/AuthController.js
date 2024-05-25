@@ -43,7 +43,8 @@ const login = async (req, res) => {
 
 
 const Register = async (req, res) => {
-    const { firstName,
+    const {
+        firstName,
         lastName,
         userName,
         email,
@@ -88,15 +89,19 @@ const Register = async (req, res) => {
 
 const handleOTpverification = async (req, res) => {
     const { otp } = req.body;
-    const isverified = await verifyOTP(req.user.decoded._id, otp);
+    const isverified = await verifyOTP(req.user._id, otp);
 
     if (!isverified) {
         return res.send(false)
     }
+    const user = await UserModel.findOne({ _id: req.user._id });
+
+    const token = generateToken(user);
+
     return res.json({
         status: true,
         data: {
-            token: req.user.token
+            token
         }
     })
 

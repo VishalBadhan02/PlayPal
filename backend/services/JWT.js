@@ -18,7 +18,7 @@ const verifyJWT = (req, res, next) => {
         return res.json({ status: false, msg: "token wrong or expired" })
     }
 
-    req.user = { decoded: decoded, token: token };
+    req.user = decoded;
     next();
 
 }
