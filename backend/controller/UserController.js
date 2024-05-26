@@ -85,8 +85,27 @@ const getcity = async (req, res) => {
 }
 
 const UpdateProfile = async (req, res) => {
+    const id = req.body;
+    const { userName, email, phoneNumber, address } = req.body;
+    try {
+        const user = await UserModel.findOneAndUpdate({ _id: id }, { $set: { userName, email, phoneNumber, address } }, {
+            new: true
+        });
+        return res.json({ msg: "updated sucessfully" }, updateValues)
 
-    
+    } catch (err) {
+        res.send(err)
+    }
+
+}
+
+const getFriends = async (req, res) => {
+    try {
+        const friends = await UserModel.find();
+        return res.json(friends);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 }
 
 const setteam = async (req, res) => {
@@ -132,4 +151,4 @@ const setteam = async (req, res) => {
 
 }
 
-module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile }
+module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends }

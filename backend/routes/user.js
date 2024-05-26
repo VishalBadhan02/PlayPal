@@ -11,8 +11,9 @@ router.get("/gettournament", UserController.gettournament);
 router.get("/getcountry", UserController.getcountry);
 router.get("/getstate/:country", UserController.getstate);
 router.get("/getcity/:state", UserController.getcity);
-router.put("/updateProfile", UserController.UpdateProfile);
+router.put("/updateProfile", verifyJWT, UserController.UpdateProfile);
 router.post("/teamcontrol", verifyJWT, UserController.setteam);
+router.get("/getFriend", verifyJWT, UserController.getFriends)
 
 
 
