@@ -1,4 +1,5 @@
-const { mongoose } = require("mongoose")
+const { mongoose } = require("mongoose");
+const { type } = require("os");
 
 const userSchema = mongoose.Schema({
     firstName: String,
@@ -8,7 +9,8 @@ const userSchema = mongoose.Schema({
     email: String,
     address: String,
     password: String,
-    team: String
+    team: String,
+    friends: Object,
 },
     { timestamps: true })
 

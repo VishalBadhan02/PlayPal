@@ -107,4 +107,13 @@ const handleOTpverification = async (req, res) => {
 
 }
 
-module.exports = { login, Register, handleOTpverification }
+const handleforgot = async (req, res) => {
+    const value = req.body;
+    const changepassword = await UserModel.findOne({ email: value })
+    const module = await generateOTP(changepassword._id, "otp for forgottn password ");
+    await SendMail(user.email, "opt", "your otp is " + module);
+    return res.json(changepassword)
+
+}
+
+module.exports = { login, Register, handleOTpverification, handleforgot }

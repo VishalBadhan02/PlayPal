@@ -14,6 +14,11 @@ router.get("/getcity/:state", UserController.getcity);
 router.put("/updateProfile", verifyJWT, UserController.UpdateProfile);
 router.post("/teamcontrol", verifyJWT, UserController.setteam);
 router.get("/getFriend", verifyJWT, UserController.getFriends)
+router.get("/getTournamnets/:id", UserController.getTournaments)
+router.get("/getNotification", verifyJWT, UserController.getNotifications)
+router.get("/getProduct", UserController.getProduct)
+router.post("/friendRequest", verifyJWT, UserController.getFriend)
+router.delete("/deleteRequest", UserController.handleDelete)
 
 
 

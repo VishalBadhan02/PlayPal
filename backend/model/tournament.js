@@ -1,4 +1,4 @@
-const { mongoose } = require("mongoose")
+const mongoose = require("mongoose")
 
 const TournamnetSchema = mongoose.Schema({
     name: String,
@@ -14,10 +14,7 @@ const TournamnetSchema = mongoose.Schema({
     total_team_participation: String,
     minimum_team: String,
     tournament_day: String,
-    address:String,
-    // country:String,
-    // state:String,
-    // city:String,
+    address: String
 }, { timestamps: true })
 
 const TournamentModel = mongoose.model("tournaments", TournamnetSchema)

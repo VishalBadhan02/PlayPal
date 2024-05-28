@@ -9,10 +9,13 @@ const TeamModel = require("../model/team")
 const Lang = require("../language/en")
 const { StateModel } = require("../model/state")
 const { CityModel } = require("../model/city")
+const { FriendModel } = require("../model/useFriends")
+const { ProductModel } = require("../model/product")
+
 
 const getProfile = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ _id: req.user._id }).select(['email', 'userName', 'createdAt', 'address', 'phoneNumber'])
+        const user = await UserModel.findOne({ _id: req.user._id }).select(['email', 'userName', 'createdAt', 'address', 'phoneNumber', 'team'])
         if (!user) {
             console.log(user)
             return res.status(402).json(reply.failure("User not exist "));
@@ -101,10 +104,54 @@ const UpdateProfile = async (req, res) => {
 
 const getFriends = async (req, res) => {
     try {
-        const friends = await UserModel.find();
-        return res.json(friends);
+        var users = await UserModel.find();
+
+        for (let i = 0; i < users.length; i++) {
+            const data = await FriendModel.findOne({ request: users[i]._id });
+            users[i].friends = (data) ? data : null;
+        }
+        return res.json(users);
     } catch (err) {
         res.status(500).json({ error: err.message });
+    }
+}
+
+const getTournaments = async (req, res) => {
+    try {
+        const tournamentId = req.params.id;
+        const tournamnet = await TournamentModel.findById({ _id: tournamentId });
+        return res.json(tournamnet)
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+
+}
+
+const getFriend = async (req, res) => {
+    try {
+        const { request } = req.body;
+
+        const Request = new FriendModel({
+            user_id: req.user._id,
+            request: request,
+            status: "0",
+            commit: "add request"
+        });
+        Request.save();
+
+        return res.json(Request)
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+}
+
+const getProduct = async (req, res) => {
+    try {
+        const products = await ProductModel.find();
+        return res.json(products);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Error fetching products" },);
     }
 }
 
@@ -151,4 +198,17 @@ const setteam = async (req, res) => {
 
 }
 
-module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends }
+const handleDelete = async () => {
+    const user_id = req.params.user_id;
+    const deletes = await FriendModel.findOneAndDelete({ user_id: user_id })
+
+}
+
+const getNotifications = async (req, res) => {
+    const user_id = req.user._id
+    const notif = await FriendModel.find({ user_id: user_id }).populate('request');
+    console.log(notif)
+    return res.json(notif)
+}
+
+module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications }
