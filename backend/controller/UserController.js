@@ -11,13 +11,13 @@ const { StateModel } = require("../model/state")
 const { CityModel } = require("../model/city")
 const { FriendModel } = require("../model/useFriends")
 const { ProductModel } = require("../model/product")
-
+const { request } = require("http")
+const ObjectId = require('mongoose');
 
 const getProfile = async (req, res) => {
     try {
         const user = await UserModel.findOne({ _id: req.user._id }).select(['email', 'userName', 'createdAt', 'address', 'phoneNumber', 'team'])
         if (!user) {
-            console.log(user)
             return res.status(402).json(reply.failure("User not exist "));
         }
         return res.status(200).json(reply.success("get profile", user))
@@ -198,17 +198,27 @@ const setteam = async (req, res) => {
 
 }
 
-const handleDelete = async () => {
-    const user_id = req.params.user_id;
-    const deletes = await FriendModel.findOneAndDelete({ user_id: user_id })
+const handleDelete = async (req, res) => {
+    const { user_id } = req.body;
+    const deletes = await FriendModel.findOneAndDelete({ request: user_id })
+    return res.json(deletes)
 
 }
 
 const getNotifications = async (req, res) => {
     const user_id = req.user._id
     const notif = await FriendModel.find({ user_id: user_id }).populate('request');
-    console.log(notif)
     return res.json(notif)
 }
 
-module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications }
+const getTournamentInfo = async (req, res) => {
+    try {
+        const tournamentId = req.params.id;
+        const tournamnet = await TournamentModel.findOne({ _id: tournamentId });
+        return res.json(tournamnet)
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+}
+
+module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications, getTournamentInfo }

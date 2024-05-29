@@ -14,7 +14,17 @@ const TournamnetSchema = mongoose.Schema({
     total_team_participation: String,
     minimum_team: String,
     tournament_day: String,
-    address: String
+    address: String,
+    eligibility: {
+        age: String,
+        proof: String,
+        entry: String,
+        gender: String,
+        players: {
+            playing: String,
+            extra: String,
+        }
+    }
 }, { timestamps: true })
 
 const TournamentModel = mongoose.model("tournaments", TournamnetSchema)

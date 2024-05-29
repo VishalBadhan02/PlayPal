@@ -17,6 +17,7 @@ router.get("/getFriend", verifyJWT, UserController.getFriends)
 router.get("/getTournamnets/:id", UserController.getTournaments)
 router.get("/getNotification", verifyJWT, UserController.getNotifications)
 router.get("/getProduct", UserController.getProduct)
+router.get("/getInfo/:id", UserController.getTournamentInfo)
 router.post("/friendRequest", verifyJWT, UserController.getFriend)
 router.delete("/deleteRequest", UserController.handleDelete)
 
