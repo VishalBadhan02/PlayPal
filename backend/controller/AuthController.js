@@ -28,7 +28,7 @@ const login = async (req, res) => {
 
         const module = await generateOTP(user._id, "otp for login");
 
-        await SendMail(user.email, "opt", "Otp for login " + module);
+        await SendMail(user.email, "opt", "Otp for login " + module.otp);
 
         const token = generateToken(user);
         return (
@@ -40,7 +40,6 @@ const login = async (req, res) => {
         return res.json(reply.failure(err.message,));
     }
 }
-
 
 const Register = async (req, res) => {
     const {
@@ -83,8 +82,6 @@ const Register = async (req, res) => {
     } catch (err) {
         return res.json(err)
     }
-
-
 }
 
 const handleOTpverification = async (req, res) => {
@@ -104,7 +101,6 @@ const handleOTpverification = async (req, res) => {
             token
         }
     })
-
 }
 
 const handleforgot = async (req, res) => {

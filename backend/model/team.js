@@ -1,4 +1,4 @@
-const { mongoose } = require("mongoose")
+const { mongoose } = require('mongoose')
 
 const TeamSchema = mongoose.Schema({
     teamName: String,
@@ -13,6 +13,11 @@ const TeamSchema = mongoose.Schema({
     homeGround: String,
     addressOfGround: String,
     pinCode: String,
+    games: {
+        type: String,
+        enum: ["cricket", "football", "badminton", "volleyball", "tenis", "basketball"],
+        required: true
+    },
     description: String,
     teamMembers: String,
     members: String
@@ -21,4 +26,4 @@ const TeamSchema = mongoose.Schema({
 
 const TeamModel = mongoose.model("team", TeamSchema)
 
-module.exports = TeamModel 
+module.exports = { TeamModel } 

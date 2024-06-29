@@ -29,12 +29,10 @@ const generateOTP = async (userId, comment) => {
 const verifyOTP = async (userId, otp) => {
 
     const OTPRecord = await OTPModel.findOne({ userId: userId }).sort({ "createdAt": "desc" });
-    console.log(OTPRecord)
     if (OTPRecord.otp === otp) {
         return { status: true, msg: "otp verified successfully" }
     }
     if (!OTPRecord) {
-        console.log(OTPRecord)
         return { status: false, msg: "otp not found" }
     }
 
