@@ -310,7 +310,7 @@ const getPlayers = async (req, res) => {
     }
 }
 
-const tournamentRegister = (req, res) => {
+const tournamentRegister = async (req, res) => {
     try {
         const {
             name,
@@ -324,29 +324,29 @@ const tournamentRegister = (req, res) => {
             state,
             city,
             address
-        } = req.body
+        } = req.body;
 
         const tournament = new TournamentModel({
             name,
             type_of_game,
             contact,
-            start_date,
-            end_date,
+            start_date: new Date(start_date),
+            end_date: new Date(end_date),
             total_team_participation,
             tournament_day,
             location,
             state,
-            city,
+            city: "",
             address
-        })
-        tournament.save()
-        return (
-            res.json(reply.success(Lang.REGISTER_SUCCESS, tournament))
-        )
+        });
+
+        await tournament.save();
+        return res.json({ message: "Tournament registered successfully", tournament });
     } catch (err) {
-        return res.json(err)
+        return res.json({ message: "Error in tournament registration", error: err });
     }
-}
+};
+
 
 const getChatFriend = async (req, res) => {
     try {
@@ -396,10 +396,8 @@ const getRecivedMessage = async (req, res) => {
 
 const searching = async (req, res) => {
     try {
-        const searched_name = req.params.queryParams
-        console.log(searched_name)
-        const data = await UserModel.findOne({ userName: searched_name })
-
+        const search = req.params.search
+        const data = await UserModel.find({ firstName: search })
         if (data) {
             return res.json(data)
         }
@@ -409,4 +407,14 @@ const searching = async (req, res) => {
     }
 }
 
-module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications, getTournamentInfo, handleApproval, getUserFriends, getTeams, addFriend, getPlayers, tournamentRegister, getChatFriend, messageControl, getChat, getRecivedMessage, getUserId, searchFriends, searching }
+const getJoinTeam = async (req, res) => {
+    try {
+        const game = req.params.game;
+        const Teams = await TeamModel.find({ games: game });
+        return res.json(Teams)
+    } catch (err) {
+        return res.json(err)
+    }
+}
+
+module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications, getTournamentInfo, handleApproval, getUserFriends, getTeams, addFriend, getPlayers, tournamentRegister, getChatFriend, messageControl, getChat, getRecivedMessage, getUserId, searchFriends, searching, getJoinTeam }

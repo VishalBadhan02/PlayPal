@@ -25,7 +25,7 @@ const { verifyJWT } = require('../services/JWT');
     router.get("/getChatFriend/:friendId", UserController.getChatFriend)
     router.get("/getChat/:friendId", UserController.getChat)
     router.get("/getRecievedMessages", verifyJWT, UserController.getRecivedMessage)
-    router.get("/searchFriend", verifyJWT, UserController.searching)
+    router.get("/searchFriend/:search", UserController.searching)
 }
 
 {
@@ -34,6 +34,7 @@ const { verifyJWT } = require('../services/JWT');
     router.post("/teamcontrol", verifyJWT, UserController.setteam);
     router.post("/tournamentRegister", verifyJWT, UserController.tournamentRegister)
     router.post("/postMessage", verifyJWT, UserController.messageControl)
+    router.get("/getTeams/:game", UserController.getJoinTeam)
 }
 
 {
