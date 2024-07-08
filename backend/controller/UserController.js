@@ -303,7 +303,7 @@ const addFriend = async (req, res) => {
 
 const getPlayers = async (req, res) => {
     try {
-        const addedPlayer = await AddTeamMemberModel.find({ user_id: req.user._id }).populate({ path: "player_id", select: ["userName"] })
+        const addedPlayer = await AddTeamMemberModel.find({ user_id: req.user._id }).populate({ path: "player_id", select: ["userName", "_id"] })
         return res.json(addedPlayer)
     } catch (err) {
         return res.json(err)
@@ -325,7 +325,7 @@ const tournamentRegister = async (req, res) => {
             city,
             address
         } = req.body;
-
+        console.log(req.body)
         const tournament = new TournamentModel({
             name,
             type_of_game,
@@ -336,7 +336,7 @@ const tournamentRegister = async (req, res) => {
             tournament_day,
             location,
             state,
-            city: "",
+            city,
             address
         });
 
