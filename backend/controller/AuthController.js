@@ -91,8 +91,8 @@ const handleOTpverification = async (req, res) => {
     if (!isverified) {
         return res.send(false)
     }
+    
     const user = await UserModel.findOne({ _id: req.user._id });
-
     const token = generateToken(user);
 
     return res.json({

@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.79921971.css",
+    "main.js": "/static/js/main.55dc1335.js",
+    "static/js/453.d855a71b.chunk.js": "/static/js/453.d855a71b.chunk.js",
+    "static/media/file (2).png": "/static/media/file (2).1ea30ad8d18b5b8eb76f.png",
+    "static/media/file (4).png": "/static/media/file (4).f08fe920bd293c766a0d.png",
+    "static/media/file.png": "/static/media/file.ff4f58829aad026a7f4e.png",
+    "static/media/file (1).png": "/static/media/file (1).7371a2304bd777797b3a.png",
+    "static/media/file (3).png": "/static/media/file (3).c5df8e9e95be909b0414.png",
+    "static/media/Remove background project.png": "/static/media/Remove background project.7c51eec49314bf9ab041.png",
+    "static/media/primeicons.svg": "/static/media/primeicons.6ed59f962963a4a73af2.svg",
+    "static/media/football-67701_1280.jpg": "/static/media/football-67701_1280.5b6ef81076386ee5f35b.jpg",
+    "static/media/volleyball-520093_1280.jpg": "/static/media/volleyball-520093_1280.8e4fef3aa1c53bcab546.jpg",
+    "static/media/sunset-5560658_1280.jpg": "/static/media/sunset-5560658_1280.a36ae94dc1eb70955f7d.jpg",
+    "static/media/final_logo_mode-removebg-preview.png": "/static/media/final_logo_mode-removebg-preview.0106b1648ca3e9e16a1c.png",
+    "static/media/1711859084821_kz1JoJrA8g7c.jpg": "/static/media/1711859084821_kz1JoJrA8g7c.0f714be504966bd5dddf.jpg",
+    "static/media/cricket-8444899_1280.jpg": "/static/media/cricket-8444899_1280.b17c68ffda05122425e8.jpg",
+    "static/media/primeicons.eot": "/static/media/primeicons.ff0c4cd79b2ffca2de54.eot",
+    "static/media/primeicons.woff": "/static/media/primeicons.8931fda1930c3bd21e96.woff",
+    "static/media/primeicons.ttf": "/static/media/primeicons.a5c2a53d1ff7a9ff5933.ttf",
+    "static/media/1712111636814_kZWMpzsgTYPr.jpg": "/static/media/1712111636814_kZWMpzsgTYPr.5fbbff4da0fbe7951a2a.jpg",
+    "static/media/primeicons.woff2": "/static/media/primeicons.024b32cc7bf399b1a847.woff2",
+    "static/media/bat.png": "/static/media/bat.98bac9b8ae2c7df0c752.png",
+    "static/media/—Pngtree—pin  location icon_3566349.png": "/static/media/—Pngtree—pin  location icon_3566349.ee6e27590ff7b9ccbfb0.png",
+    "index.html": "/index.html",
+    "main.79921971.css.map": "/static/css/main.79921971.css.map",
+    "main.55dc1335.js.map": "/static/js/main.55dc1335.js.map",
+    "453.d855a71b.chunk.js.map": "/static/js/453.d855a71b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.79921971.css",
+    "static/js/main.55dc1335.js"
+  ]
+}
