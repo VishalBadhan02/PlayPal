@@ -24,7 +24,7 @@ import Forgot from './components/frogot';
 import Product from './components/shopping/product';
 import Shop from './components/shopping/shop';
 import Cricket from './Pages/teamList/cricket';
-import Tournament_control from './components/tournamnet_features./tournament_control';
+import Tournament_control from './components/tournamnet_features/tournament_control';
 import ChatBox from './Pages/user/chatbox';
 import Friends from './components/search/friends';
 import JoinTeam from './components/JoinTeam/joinTeam';

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import Terms from "../components/tournamnet_features./terms";
+import Terms from "../components/tournamnet_features/terms";
 
 const TournamentControl = () => {
 

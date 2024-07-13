@@ -30,12 +30,6 @@ app.use('/auth', AuthRouter);
 app.use('/user', UserRouter)
 app.use('/college', UserRouter)
 
-
-app.post("/", (req, res) => {
-    res.send("Server working")
-})
-
-
 const server = http.createServer({}, app)
 server.listen(Config.PORT, Config.HOST, () => {
     console.log("server is working " + Config.PORT)
