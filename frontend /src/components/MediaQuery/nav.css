@@ -1,0 +1,28 @@
+@media screen and (max-width:640px) {
+
+    .nav_logo {
+        display: none;
+    }
+
+    .media_sidebar ul li {
+        display: none;
+    }
+
+    .games_media {
+        display: none;
+    }
+
+    .media_header {
+        position: static;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .nav_logo {
+        display: none;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}

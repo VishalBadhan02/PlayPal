@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Tournament from "../Pages/tables/tournaments";
 import Location from "../Pages/tables/location";
 import Product from './shopping/product';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from "react-hot-toast";
+import "./MediaQuery/header.css"
 
 
 
@@ -17,13 +18,18 @@ const Home = () => {
             navigate("/cricket/" + e)
         }, 1000);
     }
+    useEffect(() => {
+        if (window.window <= 200) {
+            alert("hello")
+        }
+    })
 
     return (
         <>
             <div className="container-fluid p-0 mb-5 position-relative  "  >
                 <div className=" row-1 d-flex" >
-                    <div className='col-11'>
-                        <div>
+                    <div className='col-11   carousel '>
+                        <div className=''>
                             <div
                                 id="carouselExampleAutoplaying"
                                 className="carousel slide"
@@ -63,7 +69,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-1  '>
+                    <div className='col-1'>
                         <div className='py-5 mb-1' style={{ background: "black" }}></div>
                         <div className="  z-1 position-absolute   " >
                             <div className=" sidebar-main h-100 border border-3 border-secondary "  >

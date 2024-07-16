@@ -26,8 +26,6 @@ const Location = () => {
         const city = await axios.get("http://127.0.0.1:5050/user/getcity/" + state)
         setCity(city.data)
     }
-
-
     return (
         <>
             <div className="row-sm px-1 gap-2 d-flex">
@@ -60,7 +58,7 @@ const Location = () => {
                     </div>
                 }
             </div>
-            <div className="row-sm d-flex p-2 gap-4 games ">
+            <div className="row-sm d-flex p-2 gap-4 games games_media ">
                 <button className="btn border">Cricket</button>
                 <button className="btn border">Volleball</button>
                 <button className="btn border">Football</button>
@@ -68,7 +66,6 @@ const Location = () => {
                 <button className="btn border">Tenis</button>
                 <button className="btn border">BasketBall </button>
             </div>
-
         </>
     )
 }

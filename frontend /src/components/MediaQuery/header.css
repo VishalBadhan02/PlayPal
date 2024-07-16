@@ -1,0 +1,10 @@
+@media screen and (max-width:640px) {
+
+    .carousel {
+        display: none;
+    }
+
+    .media_sidebar {
+        display: none;
+    }
+}

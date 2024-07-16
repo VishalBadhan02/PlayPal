@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import 'primeicons/primeicons.css';
 import Notification from "../Pages/user/notification";
 import toast from "react-hot-toast";
-
+import "./MediaQuery/nav.css"
 
 const Header = () => {
     const token = localStorage.getItem("token");
@@ -20,12 +20,12 @@ const Header = () => {
     return (
         <>
             {token ? <div className="container-fluid box_shadow g-0 " >
-                <div className="position-absolute top-0 w-100  z-1 text-white">
+                <div className="media_header position-absolute top-0 w-100  z-1 text-white">
                     <div className=" border-bottom border-secondary header "
                     >
                         <div className="container-fluid  text-white" >
-                            <div className="row align-items-center ">
-                                <div className="col-2  p-0 navbar-brand text-end ">
+                            <div className="row nav_row align-items-center ">
+                                <div className="col-2 nav_logo p-0 navbar-brand text-end ">
                                     <img src={require("../assets/final_logo_mode-removebg-preview.png")}
                                         style={{ width: 200, height: 50 }}
                                         className=""
@@ -85,7 +85,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex sidebar  align-items-center ">
+                    <div className="d-flex sidebar media_sidebar  align-items-center ">
 
                         <ul className="d-flex text-secondary list-group-numbered  m-0 w-100   ">
                             <li className="px-2 hoverbtn" >
@@ -132,13 +132,13 @@ const Header = () => {
             </div >
                 :
                 <div className="container-fluid p-0 box_shadow " >
-                    <div className="  position-absolute top-0 w-100  z-1 text-white ">
+                    <div className=" media_header position-absolute top-0 w-100  z-1 text-white ">
                         <div className=" border-bottom  header "
 
                         >
                             <div className="container-fluid " >
-                                <div className="row align-items-center ">
-                                    <div className="col-2  p-0 navbar-brand text-end ">
+                                <div className="row align-items-center  ">
+                                    <div className="col-2 nav_logo p-0 navbar-brand text-end ">
                                         <img src={require("../assets/final_logo_mode-removebg-preview.png")}
                                             style={{ width: 200, height: 50 }}
                                             className=""
@@ -192,7 +192,7 @@ const Header = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="d-flex sidebar  align-items-cente " >
+                        <div className="d-flex sidebar  media_sidebar align-items-cente " >
 
                             <ul className="d-flex text-secondary list-group-numbered m-0  ">
                                 <li className="px-2 hoverbtn" >
