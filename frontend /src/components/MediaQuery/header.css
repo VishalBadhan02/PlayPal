@@ -4,7 +4,12 @@
         display: none;
     }
 
-    .media_sidebar {
-        display: none;
+    .media-sidebar ul li {
+        width: 100%;
+        /* display: inline-block; */
     }
+
+    /* .media_sidebar {
+        display: none;
+    } */
 }

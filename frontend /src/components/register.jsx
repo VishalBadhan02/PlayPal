@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 const Register = () => {
 
@@ -147,7 +148,11 @@ const Register = () => {
                         {
                             <button className="w-100 btn btn-primary btn-lg" type="submit" onClick={handleRegister}
                             >
-                                Continue to checkout
+                                {isLoading ? (
+                                    "loading"
+                                ) : (
+                                    "Continue to checkout"
+                                )}
                             </button>
                         }
 

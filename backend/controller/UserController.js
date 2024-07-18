@@ -183,6 +183,13 @@ const getProduct = async (req, res) => {
 
 const setteam = async (req, res) => {
     try {
+        const players = await AddTeamMemberModel.find({ user_id: req.user._id });
+        // let player_id = "";
+        // for (i = 0; i <= players.length; i++) {
+        //     player_id = players[i].player_id;
+        // }
+
+
         const {
             games,
             teamName,
@@ -210,13 +217,15 @@ const setteam = async (req, res) => {
             addressOfGround,
             pinCode,
             description,
-            teamMembers,
+            teamMembers: players,
             members,
             games
         })
         team.save();
+
         return (
-            res.json(reply.success(Lang.REGISTER_SUCCESS, team._id))
+            res.json(reply.success(Lang.REGISTER_SUCCESS, players.
+                player_id))
         )
     } catch (err) {
         res.status(402).json({ error: err.message });
@@ -269,7 +278,13 @@ const getUserFriends = async (req, res) => {
             .populate({ path: "request", select: ["userName", "phoneNumber", "team", "_id"] })
         const friend = await FriendModel.find({ request: user_id })
             .populate({ path: "user_id", select: ["userName", "phoneNumber", "team", "_id"] })
+        const find = ""
+        for (i = 0; i < friends.user_id; i++) {
+            find = friends.user_id[i];
+            console.log(find)
+        }
         return res.json({ friends, friend });
+
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }

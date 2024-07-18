@@ -56,7 +56,7 @@ const TeamControl = () => {
         try {
             axios.defaults.headers.common['Authorization'] = token
             const res = await axios.post("http://127.0.0.1:5050/user/teamcontrol", teamInfo);
-
+            console.log(res.data)
             if (res.data.status === true) {
                 toast.success("Team registered succesfully")
             }
@@ -94,19 +94,12 @@ const TeamControl = () => {
         try {
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
             const res = await axios.get("http://127.0.0.1:5050/user/getPlayer")
-            console.log(res.data)
             setPlayers(res.data)
         } catch (err) {
             toast.error("error in players", err)
         }
     }
 
-    // const gamesDiv = document.querySelector("games")
-    // gamesDiv.addEventListener("click", changebtn = (event) => {
-    //     if (event.target.nodeName === "BUTTON") {
-    //         event.target.classList.toggle("rgb(107, 201, 241)");
-    //     }
-    // })
 
     return (
         <>

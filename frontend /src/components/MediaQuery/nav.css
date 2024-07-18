@@ -13,8 +13,16 @@
     }
 
     .media_header {
-        position: static;
+        position: block;
+        background-color: rgba(18, 18, 18);
+        padding: 10px;
     }
+
+    .media_location {
+        display: none;
+    }
+
+   
 }
 
 @media screen and (max-width:768px) {

@@ -13,10 +13,8 @@
     "nodemailer": "^6.9.14",
     "path": "^0.12.7"
   },
-
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   }
-
 }

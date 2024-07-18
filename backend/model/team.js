@@ -19,7 +19,7 @@ const TeamSchema = mongoose.Schema({
         required: true
     },
     description: String,
-    teamMembers: String,
+    teamMembers: Array,
     members: String
 
 }, { timestamps: true })

@@ -10,7 +10,8 @@ const FriendsSchema = mongoose.Schema({
         ref: "users"
     },
     status: String,
-    commit: String
+    commit: String,
+    friends: String
 }, { timestamps: true })
 
 const FriendModel = mongoose.model("friends", FriendsSchema)

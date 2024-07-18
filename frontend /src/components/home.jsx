@@ -12,6 +12,8 @@ import "./MediaQuery/header.css"
 
 const Home = () => {
     const navigate = useNavigate()
+    const [handle, sethandle] = useState({})
+    const [visible, setvisible] = useState(false)
 
     const handleGame = (e) => {
         setTimeout(() => {
@@ -19,16 +21,31 @@ const Home = () => {
         }, 1000);
     }
     useEffect(() => {
-        if (window.window <= 200) {
-            alert("hello")
+        handlemedia();
+    }, [])
+
+    const handlemedia = () => {
+        if (window.innerWidth <= 600) {
+            setvisible(visible)
+            sethandle({
+                position: "",
+                col: " "
+            })
         }
-    })
+        else {
+            setvisible(!visible)
+            sethandle({
+                position: "position-absolute",
+                col: "col-1"
+            })
+        }
+    }
 
     return (
         <>
             <div className="container-fluid p-0 mb-5 position-relative  "  >
                 <div className=" row-1 d-flex" >
-                    <div className='col-11   carousel '>
+                    <div className='col-11 carousel '>
                         <div className=''>
                             <div
                                 id="carouselExampleAutoplaying"
@@ -69,9 +86,9 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-1'>
-                        <div className='py-5 mb-1' style={{ background: "black" }}></div>
-                        <div className="  z-1 position-absolute   " >
+                    <div className='col-1 media-sidebar'>
+                        <div className='py-5 mb-1 carousel' style={{ background: "black" }}></div>
+                        <div className={`z-1 ${handle.position}`} >
                             <div className=" sidebar-main h-100 border border-3 border-secondary "  >
                                 <ul className=" list-group-numbered p-0 pe-3 h-100">
                                     <li >
@@ -111,13 +128,13 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="position-absolute  shaded1 z-0   top-0 w-100" >
-                </div>
-                <div className="container-fluid position-absolute p-5 mt-5  top-0">
+                {visible && <div className="position-absolute  shaded1 z-0   top-0 w-100" >
+                </div>}
+                <div className={`"container-fluid ${handle.position} z-1 p-5 mt-5  top-0"`} style={{ top: 0 }}>
                     <div className="row">
                         <div className="col-6 p-5 d-flex align-items-center ">
                             <div className="row mt-5">
-                                <h1 className="text-warning fw-bold po`absolute" style={{ fontSize: 70 }}>Register your <br /> team now </h1>
+                                <h1 className="text-warning fw-bold  carousel" style={{ fontSize: 70 }}>Register your <br /> team now </h1>
                                 <div >
                                     <Link to={"/teamcontrol"}>
                                         <button className="border-0  btn btn-danger hoverbtn">Click here</button>
@@ -153,9 +170,9 @@ const Home = () => {
             <div className="container-fluid ">
                 <div className="container p-5 mt-5" style={{ backgroundColor: "#ffff" }}>
                     <h1 className="px-2 mt-5">Upcoming Tournaments</h1>
-                    <Location />
+                    {/* <Location /> */}
                     <div className="row px-2 m-1">
-                        <Tournament />
+                        {/* <Tournament /> */}
                     </div>
                 </div>
             </div>
