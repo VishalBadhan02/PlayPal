@@ -184,12 +184,6 @@ const getProduct = async (req, res) => {
 const setteam = async (req, res) => {
     try {
         const players = await AddTeamMemberModel.find({ user_id: req.user._id });
-        // let player_id = "";
-        // for (i = 0; i <= players.length; i++) {
-        //     player_id = players[i].player_id;
-        // }
-
-
         const {
             games,
             teamName,
@@ -278,10 +272,8 @@ const getUserFriends = async (req, res) => {
             .populate({ path: "request", select: ["userName", "phoneNumber", "team", "_id"] })
         const friend = await FriendModel.find({ request: user_id })
             .populate({ path: "user_id", select: ["userName", "phoneNumber", "team", "_id"] })
-        const find = ""
-        for (i = 0; i < friends.user_id; i++) {
-            find = friends.user_id[i];
-            console.log(find)
+        for (let i = 0; i < friends.length; i++) {
+            console.log("new", friend[i].request._id)
         }
         return res.json({ friends, friend });
 
@@ -340,7 +332,6 @@ const tournamentRegister = async (req, res) => {
             city,
             address
         } = req.body;
-        console.log(req.body)
         const tournament = new TournamentModel({
             name,
             type_of_game,

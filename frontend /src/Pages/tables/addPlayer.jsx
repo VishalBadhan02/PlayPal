@@ -48,8 +48,12 @@ const AddPlayer = () => {
                                     <div className="row-sm d-flex p-2 bg-light rounded-2 ">
                                         <div className="col-9 fw-bold">{value.request?.userName || value.user_id?.userName} </div>
                                         <div className="col-3 text-end px-2">
-                                            <button className="btn btn-primary btn-sm"
-                                                onClick={() => handleAddPlayer(value.request._id || value.user_id?._id)}>Add</button>
+                                            {<button className="btn btn-primary btn-sm"
+                                                onClick={() => handleAddPlayer(value.request._id || value.user_id?._id)}>Add
+                                            </button>}
+                                            {<button className="btn btn-primary btn-sm"
+                                                onClick={() => handleAddPlayer(value.request._id || value.user_id?._id)}>Remove
+                                            </button>}
                                         </div>
                                     </div>
 

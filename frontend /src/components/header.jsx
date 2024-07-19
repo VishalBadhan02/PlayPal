@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <>
-            {<div className="container-fluid box_shadow g-0 " >
+            {token ? <div className="container-fluid box_shadow g-0 " >
                 <div className={`${handle.position} media_header  top-0 w-100  z-1 text-white`}>
                     <div className={`"${handle.border}  header "`}
                     >
@@ -145,95 +145,95 @@ const Header = () => {
                     </div>
                 </div>
             </div >
+                :
+                <div className="container-fluid p-0 box_shadow " >
+                    <div className={`${handle.position} media_header  top-0 w-100  z-1 text-white`}>
+                        <div className=" border-bottom  header "
+                        >
+                            <div className="container-fluid " >
+                                <div className="row align-items-center  ">
+                                    <div className="col-2 nav_logo p-0 navbar-brand text-end ">
+                                        <img src={require("../assets/final_logo_mode-removebg-preview.png")}
+                                            style={{ width: 200, height: 50 }}
+                                            className=""
+                                        />
 
-                // <div className="container-fluid p-0 box_shadow " >
-                //     <div className={`${handle.position} media_header  top-0 w-100  z-1 text-white`}>
-                //         <div className=" border-bottom  header "
-                //         >
-                //             <div className="container-fluid " >
-                //                 <div className="row align-items-center  ">
-                //                     <div className="col-2 nav_logo p-0 navbar-brand text-end ">
-                //                         <img src={require("../assets/final_logo_mode-removebg-preview.png")}
-                //                             style={{ width: 200, height: 50 }}
-                //                             className=""
-                //                         />
+                                    </div>
 
-                //                     </div>
+                                    <div className={`${handle.col} d-flex p-0`}>
 
-                //                     <div className={`${handle.col} d-flex p-0`}>
+                                        <input
+                                            type="text"
+                                            className="form-control search-input  rounded-3"
+                                            placeholder="🔎 Search Your opponents"
+                                            aria-label="Search"
+                                            aria-describedby="basic-addon1"
+                                        />
+                                    </div>
+                                    <div className="col-2 media_location">
+                                        <button className="btn  location-btn bg-white rounded-3 text-black">
+                                            <img
+                                                src={require("../assets/—Pngtree—pin  location icon_3566349.png")}
+                                                style={{ height: 25, width: 25 }}
+                                                alt="Settings"
+                                                className="settings-icon"
+                                            />
+                                            Choose your location
+                                        </button>
+                                    </div>
+                                    <div className="col-2 d-flex justify-content-end ">
 
-                //                         <input
-                //                             type="text"
-                //                             className="form-control search-input  rounded-3"
-                //                             placeholder="🔎 Search Your opponents"
-                //                             aria-label="Search"
-                //                             aria-describedby="basic-addon1"
-                //                         />
-                //                     </div>
-                //                     <div className="col-2 media_location">
-                //                         <button className="btn  location-btn bg-white rounded-3 text-black">
-                //                             <img
-                //                                 src={require("../assets/—Pngtree—pin  location icon_3566349.png")}
-                //                                 style={{ height: 25, width: 25 }}
-                //                                 alt="Settings"
-                //                                 className="settings-icon"
-                //                             />
-                //                             Choose your location
-                //                         </button>
-                //                     </div>
-                //                     <div className="col-2 d-flex justify-content-end ">
+                                        <button className="btn hoverbtn border-0   ">
+                                            <i className="pi pi-bell text-white  p-1" ></i>
+                                        </button>
+                                        <div className="p-1 carousel">
+                                            <Link to={"/login"}>
+                                                <button className="btn border border-secondary text-white  " >
+                                                    <i className="pi pi-sign-in " ></i>
+                                                    <span> Sign in</span>
+                                                </button>
+                                            </Link>
 
-                //                         <button className="btn hoverbtn border-0   ">
-                //                             <i className="pi pi-bell text-white  p-1" ></i>
-                //                         </button>
-                //                         <div className="p-1 carousel">
-                //                             <Link to={"/login"}>
-                //                                 <button className="btn border border-secondary text-white  " >
-                //                                     <i className="pi pi-sign-in " ></i>
-                //                                     <span> Sign in</span>
-                //                                 </button>
-                //                             </Link>
+                                        </div>
 
-                //                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="d-flex sidebar  media_sidebar align-items-cente " >
 
-                //                     </div>
-                //                 </div>
-                //             </div>
-                //         </div>
-                //         <div className="d-flex sidebar  media_sidebar align-items-cente " >
+                            <ul className="d-flex text-secondary list-group-numbered m-0  ">
+                                <li className="px-2 hoverbtn" >
+                                    <button className="btn border-0 text-white  ">Home</button>
+                                </li>
+                                <li className="px-2 hoverbtn">
+                                    <button className="btn border-0 text-white ">Shopping</button>
+                                </li>
+                                <li className="px-2 hoverbtn">
+                                    <button className="btn border-0 text-white ">Matches Win</button>
+                                </li>
+                                <li className="px-2 hoverbtn">
+                                    <button className="btn border-0 text-white ">Your Points</button>
+                                </li>
 
-                //             <ul className="d-flex text-secondary list-group-numbered m-0  ">
-                //                 <li className="px-2 hoverbtn" >
-                //                     <button className="btn border-0 text-white  ">Home</button>
-                //                 </li>
-                //                 <li className="px-2 hoverbtn">
-                //                     <button className="btn border-0 text-white ">Shopping</button>
-                //                 </li>
-                //                 <li className="px-2 hoverbtn">
-                //                     <button className="btn border-0 text-white ">Matches Win</button>
-                //                 </li>
-                //                 <li className="px-2 hoverbtn">
-                //                     <button className="btn border-0 text-white ">Your Points</button>
-                //                 </li>
+                                <button className="btn border-0 text-white " >Score card </button >
 
-                //                 <button className="btn border-0 text-white " >Score card </button >
+                                <li className="px-2 hoverbtn">
+                                    <button className="btn border-0 text-white">Manage Team</button>
 
-                //                 <li className="px-2 hoverbtn">
-                //                     <button className="btn border-0 text-white">Manage Team</button>
+                                </li>
+                                <li className="px-2 hoverbtn">
+                                    <button className="btn border-0 text-white ">Scheduled Matches</button>
+                                </li>
 
-                //                 </li>
-                //                 <li className="px-2 hoverbtn">
-                //                     <button className="btn border-0 text-white ">Scheduled Matches</button>
-                //                 </li>
-
-                //             </ul>
-
-
-                //         </div>
-                //     </div>
+                            </ul>
 
 
-                // </div>
+                        </div>
+                    </div>
+
+
+                </div >
 
             }
 
