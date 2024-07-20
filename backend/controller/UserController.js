@@ -13,6 +13,7 @@ const { FriendModel } = require("../model/useFriends")
 const { ProductModel } = require("../model/product")
 const { AddTeamMemberModel } = require("../model/addTeamMember")
 const { MessageModel } = require("../model/messages")
+const { request } = require("http")
 
 
 const getProfile = async (req, res) => {
@@ -272,8 +273,18 @@ const getUserFriends = async (req, res) => {
             .populate({ path: "request", select: ["userName", "phoneNumber", "team", "_id"] })
         const friend = await FriendModel.find({ request: user_id })
             .populate({ path: "user_id", select: ["userName", "phoneNumber", "team", "_id"] })
+
+        console.log(friends)
+        for (let i = 0; i < friend.length; i++) {
+            console.log(friend[i])
+            const data = await FriendModel.findOne({ user_id: friend[i].user_id._id })
+            friend[i].friends = (data) ? data : null
+            // console.log("friends", data)
+        }
         for (let i = 0; i < friends.length; i++) {
-            console.log("new", friend[i].request._id)
+            const data = await FriendModel.findOne({ request: friends[i].request._id })
+            friend[i].friends = (data) ? data : null
+            // console.log("friend", data)
         }
         return res.json({ friends, friend });
 

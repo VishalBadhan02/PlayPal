@@ -17,6 +17,7 @@ const FindFriend = () => {
         try {
             axios.defaults.headers.common["Authorization"] = token;
             const res = await axios.get("http://127.0.0.1:5050/user/getFriend");
+            console.log(res.data)
             setList(res.data);
         } catch (err) {
             toast.error(err.response.data.message);
@@ -30,8 +31,6 @@ const FindFriend = () => {
             const res = await axios.post("http://127.0.0.1:5050/user/friendRequest", {
                 request: user_id,
             });
-
-
         } catch (err) {
             toast.error(err.response.data.message);
         }

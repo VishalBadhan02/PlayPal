@@ -116,7 +116,7 @@ const Profile = () => {
                     </div>
                     <div className="col-9  " >
 
-                        <div className=" rounded box_shadow p-3" style={{ background: "#f5f5f5", height: 523 }} >
+                        <div className=" rounded box_shadow p-3" style={{ background: "#f5f5f5", height: 523, overflow: 'scroll ' }} >
 
                             {showUser_and_team && <User_Team />}
                             {showProfile && <UserProfile />}
