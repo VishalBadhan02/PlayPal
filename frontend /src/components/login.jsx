@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 const Login = () => {
     const [email, setemail] = useState();
     const [password, setpassword] = useState();
+    const [isLoading, setIsLaodinng] = useState(false)
     const navigate = useNavigate();
     const redirect = "";
 
@@ -16,6 +17,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setIsLaodinng(true)
 
         try {
             const res = await axios.post("http://127.0.0.1:5050/auth/login", {
@@ -48,7 +50,7 @@ const Login = () => {
                     <div className=" d-flex justify-content-center" >
                         <div className="container">
                             <div className="heading">Sign In</div>
-                            <form className="form" method="POST" onSubmit={handleLogin} >
+                            <form className="form" method="POST"  >
                                 <input
                                     required=""
                                     className="input"
@@ -74,7 +76,7 @@ const Login = () => {
 
                                 </span>
 
-                                <button className="login-button" type="submit" defaultValue="Sign In" >Login</button>
+                                <button className="login-button" type="submit" defaultValue="Sign In" onClick={handleLogin}>{(isLoading ? "Loading  " : "Login...")}</button>
                                 <div className="text-center">
                                     <span className="text-white ">Or</span>
                                 </div>

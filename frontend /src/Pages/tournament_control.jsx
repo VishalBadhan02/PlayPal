@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Terms from "../components/tournamnet_features/terms";
+import toast from "react-hot-toast";
 
 const TournamentControl = () => {
 
@@ -13,9 +14,12 @@ const TournamentControl = () => {
     }, [])
 
     const setTournament = async () => {
-        const res = await axios.get("http://127.0.0.1:5050/user/getTournamnets/" + id);
-        setValue(res.data)
-
+        try {
+            const res = await axios.get("http://127.0.0.1:5050/user/getTournamnets/" + id);
+            setValue(res.data)
+        } catch (error) {
+            toast.error("error in tournament", error)
+        }
 
     }
     return (

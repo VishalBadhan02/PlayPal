@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const Config = require("./config/index");
 const AuthRouter = require('./routes/auth');
 const UserRouter = require('./routes/user');
+const LinkRouter = require('./routes/link')
 
 mongoose.connect(Config.DATABASE.URL);
 const db = mongoose.connection;
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth', AuthRouter);
 app.use('/user', UserRouter)
 app.use('/college', UserRouter)
+app.use('/links', LinkRouter)
 
 const server = http.createServer({}, app)
 server.listen(Config.PORT, Config.HOST, () => {

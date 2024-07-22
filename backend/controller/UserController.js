@@ -266,7 +266,7 @@ const handleApproval = async (req, res) => {
     }
 }
 
-const getUserFriends = async (req, res) => {
+const getPlayingFriends = async (req, res) => {
     try {
         const user_id = req.user._id;
         const friends = await FriendModel.find({ user_id: user_id })
@@ -274,18 +274,29 @@ const getUserFriends = async (req, res) => {
         const friend = await FriendModel.find({ request: user_id })
             .populate({ path: "user_id", select: ["userName", "phoneNumber", "team", "_id"] })
 
-        console.log(friends)
-        for (let i = 0; i < friend.length; i++) {
-            console.log(friend[i])
-            const data = await FriendModel.findOne({ user_id: friend[i].user_id._id })
-            friend[i].friends = (data) ? data : null
-            // console.log("friends", data)
-        }
         for (let i = 0; i < friends.length; i++) {
-            const data = await FriendModel.findOne({ request: friends[i].request._id })
+            const data = await AddTeamMemberModel.findOne({ player_id: friends[i].request._id })
             friend[i].friends = (data) ? data : null
-            // console.log("friend", data)
         }
+
+        for (let i = 0; i < friend.length; i++) {
+            const data = await AddTeamMemberModel.findOne({ player_id: friend[i].user_id._id })
+            friend[i].friends = (data) ? data : null
+        }
+
+        return res.json({ friends, friend });
+
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+};
+const getUserFriends = async (req, res) => {
+    try {
+        const user_id = req.user._id;
+        const friends = await FriendModel.find({ user_id: user_id })
+            .populate({ path: "request", select: ["userName", "phoneNumber", "team", "_id"] })
+        const friend = await FriendModel.find({ request: user_id })
+            .populate({ path: "user_id", select: ["userName", "phoneNumber", "team", "_id"] })
         return res.json({ friends, friend });
 
     } catch (err) {
@@ -434,4 +445,4 @@ const getJoinTeam = async (req, res) => {
     }
 }
 
-module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications, getTournamentInfo, handleApproval, getUserFriends, getTeams, addFriend, getPlayers, tournamentRegister, getChatFriend, messageControl, getChat, getRecivedMessage, getUserId, searchFriends, searching, getJoinTeam }
+module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications, getTournamentInfo, handleApproval, getUserFriends, getTeams, addFriend, getPlayers, tournamentRegister, getChatFriend, messageControl, getChat, getRecivedMessage, getUserId, searchFriends, searching, getJoinTeam, getPlayingFriends }

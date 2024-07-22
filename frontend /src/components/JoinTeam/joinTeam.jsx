@@ -12,7 +12,6 @@ const JoinTeam = () => {
     const setteam = async (e) => {
         e.preventDefault();
         const game = `${e.target.value}`
-        console.log(game)
         try {
             const res = await axios.get("http://127.0.0.1:5050/user/getTeams/" + game)
             setTeam(res.data)

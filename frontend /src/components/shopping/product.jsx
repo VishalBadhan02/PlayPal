@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast";
 
 const Product = () => {
     const [product, setProducts] = useState([]);
@@ -9,8 +10,14 @@ const Product = () => {
     }, [])
 
     const setProduct = async () => {
-        const res = await axios.get("http://127.0.0.1:5050/user/getProduct");
-        setProducts(res.data)
+        try {
+            const res = await axios.get("http://127.0.0.1:5050/user/getProduct");
+            setProducts(res.data)
+        } catch (error) {
+            toast.error("error in product getting", error)
+
+        }
+
     }
 
     const truncateDescription = (text) => {

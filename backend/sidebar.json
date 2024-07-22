@@ -1,0 +1,72 @@
+[
+    {
+        "sidebar_links": [
+            {
+                "name": "Home",
+                "link": "/"
+            },
+            {
+                "name": "Shopping",
+                "link": "/shopping"
+            },
+            {
+                "name": "Leaderboard",
+                "link": ""
+            },
+            {
+                "name": "Your Points",
+                "link": ""
+            },
+            {
+                "name": "Score Card",
+                "link": ""
+            },
+            {
+                "name": "Manage Team",
+                "link": "/team-management"
+            },
+            {
+                "name": "Scheduled Matches",
+                "link": ""
+            },
+            {
+                "name": "Join Team",
+                "link": "/join-team"
+            }
+        ]
+    },
+    {
+        "games_link": [
+            {
+                "name": "Cricket",
+                "link": "",
+                "img": " ../assets/Remove background project.png"
+            },
+            {
+                "name": "Football",
+                "link": "",
+                "img": ""
+            },
+            {
+                "name": "Volleyball",
+                "link": "",
+                "img": ""
+            },
+            {
+                "name": "Badminton",
+                "link": "",
+                "img": ""
+            },
+            {
+                "name": "Tennis ",
+                "link": "",
+                "img": ""
+            },
+            {
+                "name": "Basketball",
+                "link": "",
+                "img": ""
+            }
+        ]
+    }
+]

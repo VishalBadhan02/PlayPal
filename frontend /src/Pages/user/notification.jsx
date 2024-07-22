@@ -17,7 +17,7 @@ const Notification = () => {
     return (
         <>
             <button
-                className="btn hoverbtn border-0 "
+                className="btn hoverbtn border-0 px-1 "
                 id="dropdownMenuLink"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"

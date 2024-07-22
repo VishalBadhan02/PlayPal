@@ -22,7 +22,11 @@
         display: none;
     }
 
-   
+    .nav_profile {
+        display: none;
+    }
+
+
 }
 
 @media screen and (max-width:768px) {

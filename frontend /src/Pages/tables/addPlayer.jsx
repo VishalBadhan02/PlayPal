@@ -16,8 +16,7 @@ const AddPlayer = () => {
         const token = localStorage.getItem('token')
         try {
             axios.defaults.headers.common["Authorization"] = token;
-            const res = await axios.get("http://127.0.0.1:5050/user/yourFriends");
-            console.log(res.data.friend)
+            const res = await axios.get("http://127.0.0.1:5050/user/playingOnes");
             setList([...res.data.friends, ...res.data.friend]);
         } catch (err) {
             toast.error("error in yourFriends", err)
@@ -48,17 +47,15 @@ const AddPlayer = () => {
                                     <div className="row-sm d-flex p-1 bg-light rounded-2 ">
                                         <div className="col-9 fw-bold">{value.request?.userName || value.user_id?.userName} </div>
                                         <div className="col-3 text-end px-2">
-                                            {value.friend && <button className="btn btn-primary btn-sm"
+                                            {(value.friends == null || value.friends == null) && <button className="btn btn-primary btn-sm"
                                                 onClick={() => handleAddPlayer(value.request._id || value.user_id?._id)}>Add
                                             </button>}
-                                            {/* {(value.friend) && (value.friend.friends.status == "1") && <button className="btn btn-primary btn-sm"
+                                            {(value.friends || value.frineds) && (value.friends?.status == 1 || value.friends?.status == 1) && <button className="btn btn-primary btn-sm"
                                                 onClick={() => handleAddPlayer(value.request._id || value.user_id?._id)}>Remove
-                                            </button>} */}
+                                            </button>}
                                         </div>
                                     </div>
-
                                 </td>
-
                             </tr>
                         ))}
 
