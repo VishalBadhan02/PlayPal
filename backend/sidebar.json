@@ -66,6 +66,11 @@
                 "name": "Basketball",
                 "link": "",
                 "img": ""
+            },
+            {
+                "name": "Log Out",
+                "link": "/home",
+                "img": ""
             }
         ]
     }

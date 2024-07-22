@@ -29,6 +29,7 @@ import ChatBox from './Pages/user/chatbox';
 import Friends from './components/search/friends';
 import JoinTeam from './components/JoinTeam/joinTeam';
 import Matches from './Pages/matches';
+import PhoneTournament from './components/tournamnet_features/tournament_control_for_phone';
 
 
 
@@ -50,6 +51,7 @@ function App() {
 
             <Route element={<AppLayout />}>
               <Route path="/" element={<Home />} />
+              <Route path="/tournaments" element={<PhoneTournament />} />
               {/* <Route path="/search" element={<Friends />} /> */}
             </Route>
 
@@ -71,6 +73,7 @@ function App() {
               <Route path="/chatbox/:value.request._id" element={<ChatBox />} />
               <Route path="/search" element={<Friends />} />
               <Route path="/join-team" element={<JoinTeam />} />
+              
             </Route>
 
             <Route element={<Pagelayout />}>

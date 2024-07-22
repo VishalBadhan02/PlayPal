@@ -107,7 +107,6 @@ const Home = () => {
                                     <ul className=" list-group-numbered p-0 pe-3 h-100">
                                         {link && link.map((value, index) =>
                                             <li key={index}>
-
                                                 <button className="btn  border-0 rounded-circle hoverbtn1 border-secondary " onClick={() => handleGame("cricket")} >
                                                     <img src={`require${value.img}`} className="" style={{ height: 45, width: 65 }} alt="" />
                                                     {value.name}</button>

@@ -1,0 +1,9 @@
+.bg {
+    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(0 0 0 /90%) 100%);
+}
+
+.phonebtn button:hover {
+    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(0 0 0 /90%) 100%);
+    border-top: 2px solid red;
+    border-left: 2px solid red;
+}
