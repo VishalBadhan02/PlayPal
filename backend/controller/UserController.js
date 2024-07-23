@@ -66,7 +66,7 @@ const getCourse = async (req, res) => {
 
 const gettournament = async (req, res) => {
     try {
-        const tournament = await TournamentModel.find()
+        const tournament = await TournamentModel.find().sort({rank:"asc"})
         return res.json(tournament)
     } catch (err) {
         res.send(err.message)

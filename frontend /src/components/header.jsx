@@ -14,7 +14,7 @@ const Header = () => {
 
     useEffect(() => {
         handlemedia();
-    }, [])
+    },[])
 
     const handlemedia = () => {
         if (window.innerWidth <= 600) {

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 import { Link } from "react-router-dom"
 
 const Tournament = () => {
@@ -11,8 +12,12 @@ const Tournament = () => {
     }, [])
 
     const settournament = async () => {
-        const res = await axios.get("http://127.0.0.1:5050/user/gettournament")
-        setdetail(res.data)
+        try {
+            const res = await axios.get("http://127.0.0.1:5050/user/gettournament")
+            setdetail(res.data)
+        } catch (error) {
+            toast.error("Tournament errors", error)
+        }
     }
 
     return (
