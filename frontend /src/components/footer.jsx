@@ -4,7 +4,7 @@ import AuthFooter from "../layouts/authFooter";
 const Footer = () => {
     return (
         <>
-            <div className="container-fluid p-0" style={{ backgroundColor: "#f5f5f5" }}>
+            {/* <div className="container-fluid p-0" style={{ backgroundColor: "#f5f5f5" }}>
                 <div className="row  m-1 p-0 ">
                     <div className="col-3 p-4  bg-light ">
                         <img src={require("../assets/final_logo_mode-removebg-preview.png")}
@@ -54,7 +54,7 @@ const Footer = () => {
 
                 </div>
                 <AuthFooter />
-            </div>
+            </div> */}
 
         </>
     )

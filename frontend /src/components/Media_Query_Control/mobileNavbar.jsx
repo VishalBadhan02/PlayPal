@@ -8,6 +8,7 @@ import "./ForPhone/phone.css"
 const MobileNavbar = () => {
     const token = localStorage.getItem("token");
     const [link, setLink] = useState();
+    const [value, setValue] = useState("");
 
 
     const search = (e) => {
@@ -16,14 +17,26 @@ const MobileNavbar = () => {
     }
 
     useEffect(() => {
-        setSideBar()
+        setSideBar();
+        window.addEventListener("handleNav", handleNav)
+        return () => window.removeEventListener("handleNav", handleNav);
+
     }, [])
+
+    const handleNav = () => {
+        if (window.scrollY > 2) {
+            setValue("position-fixed z-1")
+        }
+        else {
+            setValue("")
+        }
+    }
 
     const setSideBar = async () => {
         try {
             const res = await axios.get("http://127.0.0.1:5050/links/sideBar")
-            const games_link = res.data.find(item => item.games_link).games_link;
-            setLink(games_link);
+            console.log(res.data)
+            setLink(res.data);
         } catch (err) {
             toast.error("Error in side bar", err)
         }
@@ -31,15 +44,25 @@ const MobileNavbar = () => {
     return (
         <>
             {token ?
-                <nav className="navbar bg pb-0" aria-label="Dark offcanvas navbar">
+                <nav className="navbar bg pb-1   w-100" aria-label="Dark offcanvas navbar">
                     <div className="container-fluid ">
                         <a className="navbar-brand p-0 pb-1" href="/">
                             <img src={require("../../assets/final_logo_mode-removebg-preview.png")}
-                                style={{ width: 175, height: 30 }}
+                                style={{ width: 130, height: 30 }}
                                 className=" "
                             />
                         </a>
-                        <div className="d-flex">
+                        <div className="d-flex align-items-center">
+
+                            <i className="pi p-1 pi-search text-white"></i>
+                            {/* <input
+                                type="search"
+                                className="rounded-3 bg-dark border-0 "
+                                placeholder=" Search "
+                                aria-label="Search"
+                                aria-describedby="basic-addon1"
+                                onKeyUp={(e) => search(e.target.value)}
+                            /> */}
                             <Link to={"/profile"} className=" btn hoverbtn border-0  ">
                                 <i className="pi pi-user p-1 text-white"></i>
                             </Link>
@@ -88,21 +111,14 @@ const MobileNavbar = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row-1 d-flex border-top border-secondary ">
+                    {/* <div className="row-1 d-flex border-top border-secondary ">
                         <div className="col-9 d-flex align-items-center px-2 ">
-                            <input
-                                type="search"
-                                className="rounded-3 bg-dark border-0 "
-                                placeholder=" Search "
-                                aria-label="Search"
-                                aria-describedby="basic-addon1"
-                                onKeyUp={(e) => search(e.target.value)}
-                            />
+                          
                         </div>
                         <div className="col-3 text-end">
                             <button className="btn text-white border-0">Logout</button>
                         </div>
-                    </div>
+                    </div> */}
                 </nav>
                 :
                 <nav className="navbar bg-dark" aria-label="Dark offcanvas navbar">
@@ -141,7 +157,7 @@ const MobileNavbar = () => {
                                 />
                             </div>
                             <div className="offcanvas-body ">
-                                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <ul className="navbar-nav justify-content-end flex-g row-1 pe-3">
                                     <li className="nav-item">
                                         <a className="nav-link active text-white" aria-current="page" href="#">
                                             Home

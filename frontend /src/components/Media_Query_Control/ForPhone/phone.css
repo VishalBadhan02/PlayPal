@@ -7,3 +7,19 @@
     border-top: 2px solid red;
     border-left: 2px solid red;
 }
+
+.bg_index {
+    background-color: #e89c11;
+}
+
+.side_bar {
+    box-shadow: 5px 5px 5px rgb(234, 232, 232);
+}
+
+.box_shadow {
+    box-shadow: 10px 10px 10px 10px rgba(101, 101, 101, 0.2);
+}
+
+.box_shadow_orange {
+    box-shadow: 10px 10px 10px 10px rgba(252, 164, 33, 0.2);
+}

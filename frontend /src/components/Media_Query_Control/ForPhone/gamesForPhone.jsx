@@ -23,28 +23,53 @@ const GamesForPhone = () => {
 
     return (
         <>
-            <div className="container bg">
-                <div className="row phonebtn py-2">
-                    <div className="col-6 text-center  ">
-                        <button className="btn btnstyle text-white" >Team Register</button>
-                    </div>
-                    <div className="col-6 text-center text-white">
-                        <Link to={"/tournaments"}>
-                            <button className="btn text-white">
-                                Touraments
-                            </button>
-                        </Link>
-                    </div>
+            <div className="container p-0 position-relative">
+                <div className="">
+                    <img src={require("../../../assets/Firefly sports 8882.jpg")}
+                        className="w-100  "
+                        alt="" style={{ height: 600 }} />
+
                 </div>
-                <div className="row">
-                    {link && link.map((value, index) =>
-                        <div key={index} className="col-6 p-3 justify-content-center d-flex">
-                            <div className="card text-center" style={{ width: 100, height: 100 }}>
-                                <p>{value.name}</p>
-                            </div>
+                <div className="shaded position-absolute top-0"></div>
+
+                <div className="container-fluid position-absolute  top-0">
+                    <div className="row phonebtn py-2">
+                        <div className="col-6 text-center  ">
+                            <button className="btn btn style text-white fw-medium" style={{ fontSize: 18 }}>Team Register</button>
                         </div>
-                    )}
+                        <div className="col-6 text-center">
+                            <Link to={"/tournaments"}>
+                                <button className="btn text-white" style={{ fontSize: 18 }}>
+                                    Touraments
+                                </button>
+                            </Link>
+                        </div>
+                        <div className="col-6 text-center">
+                            <Link to={"/tournaments"}>
+                                <button className="btn text-white" style={{ fontSize: 18 }}>
+                                    Join Team
+                                </button>
+                            </Link>
+                        </div>
+                        <div className="col-6 text-center">
+                            <Link to={"/tournaments"}>
+                                <button className="btn text-white" style={{ fontSize: 18 }}>
+                                    Managae team
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="row p-2  pt-4">
+                        {link && link.map((value, index) =>
+                            <div key={index} className="text-center  mb-2 ">
+                                <div className=" bg-black bg-transparent shadow-lg border border-secondary border-opacity-75 rounded-5" >
+                                    <p className="p-2 m-0 text-white fw-medium" style={{ letterSpacing: 3 }}>{value.name}</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
+
             </div>
         </>
     )
