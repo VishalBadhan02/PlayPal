@@ -7,7 +7,7 @@ const TournamentTeamsSchema = mongoose.Schema({
     },
     teamID: {
         type: String,
-        ref: "users"
+        ref: "teams"
     },
     status: String,
 }, { timestamps: true })

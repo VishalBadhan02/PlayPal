@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 const TournamentControl = () => {
 
     const [value, setValue] = useState();
+    const [playingTeams, setPlayingTems] = useState([])
     const id = window.location.pathname.split("/tournamnet-control/")[1];
 
     const token = localStorage.getItem('token')
@@ -39,7 +40,7 @@ const TournamentControl = () => {
 
             axios.defaults.headers.common['Authorization'] = token
             const res = await axios.get("http://127.0.0.1:5050/tournament/setTeams/" + id)
-            console.log(res)
+            setPlayingTems(res.data)
         } catch (error) {
             toast.error("error in entry", error)
         }
@@ -96,6 +97,11 @@ const TournamentControl = () => {
                         </div>
                     }
                     <button className="btn" onClick={handleentry}>Join</button>
+                    {playingTeams && playingTeams.map((value, index) =>
+                        <div key={index} className="bg-red">
+                            {value.teamID.teamName}
+                        </div>
+                    )}
                 </div>
             </div >
             {/* {value && (

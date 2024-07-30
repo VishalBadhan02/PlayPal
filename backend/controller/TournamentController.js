@@ -18,7 +18,7 @@ const setEntry = async (req, res) => {
         const entry = new TournamentTeamsModel({
             tournametId: tournametId.id,
             teamID: team_id,
-            status: "true"
+            status: "0"
         });
         entry.save()
         res.status(200).json(reply.success(lang.TOURNAMENT_TEAM_REGISTERATION))
@@ -30,12 +30,14 @@ const setEntry = async (req, res) => {
 const setTeam = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(id)
-        const data = await TournamentTeamsModel.findOne({ tournametId: id })
+        const data = await TournamentTeamsModel.find({ tournametId: id }).populate("teamID")
+        return res.json(data)
     } catch (error) {
         return res.json("error in getting tournament teams", error)
     }
 }
+
+
 
 module.exports = {
     setEntry, setTeam
