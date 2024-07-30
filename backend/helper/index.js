@@ -15,7 +15,7 @@ const moment = require("moment")
 
 const generateOTP = async (userId, comment) => {
     const oneTimePassword = Math.floor(Math.random(0) * (10000 - 999 + 1) + 999);
-    setoneTimePassword = oneTimePassword.toString();
+    const setoneTimePassword = oneTimePassword.toString();
 
     const OTPModule = new OTPModel();
     OTPModule.userId = userId;

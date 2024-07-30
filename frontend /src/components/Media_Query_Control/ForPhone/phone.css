@@ -9,7 +9,7 @@
 }
 
 .bg_index {
-    background-color: #e89c11;
+    background-color: red;
 }
 
 .side_bar {
@@ -17,9 +17,20 @@
 }
 
 .box_shadow {
-    box-shadow: 10px 10px 10px 10px rgba(101, 101, 101, 0.2);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .box_shadow_orange {
     box-shadow: 10px 10px 10px 10px rgba(252, 164, 33, 0.2);
+    background-color: #ffb01e;
+}
+
+@media screen and (max-width:640px) {
+    .games {}
+}
+
+@media screen and (min-width:1300px) {
+    .games {
+        display: flex;
+    }
 }

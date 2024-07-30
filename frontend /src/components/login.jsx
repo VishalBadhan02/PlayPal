@@ -76,7 +76,7 @@ const Login = () => {
 
                                 </span>
 
-                                <button className="login-button" type="submit" defaultValue="Sign In" onClick={handleLogin}>{(isLoading ? "Loading  " : "Login...")}</button>
+                                <button className="login-button" type="submit" defaultValue="Sign In" onClick={handleLogin}>{(isLoading ? "Loading...  " : "Login")}</button>
                                 <div className="text-center">
                                     <span className="text-white ">Or</span>
                                 </div>

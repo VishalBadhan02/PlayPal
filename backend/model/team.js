@@ -24,6 +24,6 @@ const TeamSchema = mongoose.Schema({
 
 }, { timestamps: true })
 
-const TeamModel = mongoose.model("team", TeamSchema)
+const TeamModel = mongoose.model("teams", TeamSchema)
 
 module.exports = { TeamModel } 

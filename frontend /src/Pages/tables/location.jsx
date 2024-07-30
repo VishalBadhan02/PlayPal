@@ -19,6 +19,7 @@ const Location = () => {
 
     const getState = async (code) => {
         const states = await axios.get("http://127.0.0.1:5050/user/getstate/" + code)
+        console.log(code)
         setState(states.data)
     }
 
@@ -33,7 +34,7 @@ const Location = () => {
                     <select className="form-control" name="" id="" onChange={(e) => getState(e.target.value)} >
                         <option value="">Select Country</option>
                         {location && location.map((country, index) =>
-                            <option key={index} value={country.code}>{country.name} </option>
+                            <option key={index} value={country.iso2}>{country.name} </option>
                         )}
                     </select>
                 </div>
@@ -58,14 +59,7 @@ const Location = () => {
                     </div>
                 }
             </div>
-            <div className="row-sm d-flex p-2 gap-4 games games_media ">
-                <button className="btn border">Cricket</button>
-                <button className="btn border">Volleball</button>
-                <button className="btn border">Football</button>
-                <button className="btn border">Badminton</button>
-                <button className="btn border">Tenis</button>
-                <button className="btn border">BasketBall </button>
-            </div>
+           
         </>
     )
 }

@@ -188,9 +188,8 @@ const Home = () => {
                 <div className="container-fluid ">
                     <div className="container  mt-5" style={{ backgroundColor: "#ffff" }}>
                         <h1 className="px-2 mt-5">Upcoming Tournaments</h1>
-                        {/* <Location /> */}
                         <div className="row px-2 m-1">
-                            <Tournament />
+                            {/* <Tournament /> */}
                             <PhoneTournament />
                         </div>
                     </div>

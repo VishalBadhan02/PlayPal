@@ -9,7 +9,10 @@ const userSchema = mongoose.Schema({
     email: String,
     address: String,
     password: String,
-    team: String,
+    team: {
+        type: Object,
+        ref: "team"
+    },
     friends: Object,
 },
     { timestamps: true })

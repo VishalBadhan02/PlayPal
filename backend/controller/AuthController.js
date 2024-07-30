@@ -5,8 +5,13 @@ const { generateToken } = require('../services/JWT');
 const Lang = require('../language/en');
 const { generateOTP, verifyOTP } = require('../helper/index')
 const SendMail = require('../services/mail')
+const Razorpay = require("razorpay")
 const Bcrypt = require("bcrypt")
 const saltRounds = 16;
+const Config = require("../config/index")
+const { TeamModel } = require("../model/team")
+
+
 
 
 
@@ -67,7 +72,8 @@ const Register = async (req, res) => {
             email,
             phoneNumber,
             address,
-            password: encypted_password
+            password: encypted_password,
+            team: ""
         })
         user.save();
 
@@ -84,6 +90,15 @@ const Register = async (req, res) => {
     }
 }
 
+const handleteam = async (req, res) => {
+    try {
+        const data = await TeamModel.findOne({ user_id: req.user._id })
+        return res.json(data)
+    } catch (error) {
+        return res.json("error in team", error)
+    }
+}
+
 const handleOTpverification = async (req, res) => {
     const { otp } = req.body;
     const isverified = await verifyOTP(req.user._id, otp);
@@ -91,7 +106,7 @@ const handleOTpverification = async (req, res) => {
     if (!isverified) {
         return res.send(false)
     }
-    
+
     const user = await UserModel.findOne({ _id: req.user._id });
     const token = generateToken(user);
 
@@ -112,4 +127,17 @@ const handleforgot = async (req, res) => {
 
 }
 
-module.exports = { login, Register, handleOTpverification, handleforgot }
+const instance = new Razorpay({
+    key_id: Config.RAZORPAY.KEY_ID,
+    key_secret: Config.RAZORPAY.PRIVATE_KEY
+});
+
+const createOrder = async (ammout, currency = "IND") => {
+    const options = {
+        ammount: ammout * 100,
+        currency: currency,
+        receipt: "order" + Date.now()
+    }
+}
+
+module.exports = { login, Register, handleOTpverification, handleforgot, handleteam }

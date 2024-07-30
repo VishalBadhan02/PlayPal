@@ -7,10 +7,12 @@ const TournamentControl = () => {
 
     const [value, setValue] = useState();
     const id = window.location.pathname.split("/tournamnet-control/")[1];
-    localStorage.setItem("tournament_id", id)
+
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
         setTournament()
+        getTems()
     }, [])
 
     const setTournament = async () => {
@@ -20,11 +22,83 @@ const TournamentControl = () => {
         } catch (error) {
             toast.error("error in tournament", error)
         }
+    }
+    const handleentry = async () => {
+        try {
+            const data = {
+                id
+            }
+            axios.defaults.headers.common['Authorization'] = token
+            const res = await axios.post("http://127.0.0.1:5050/tournament/setEntry", data)
+        } catch (error) {
+            toast.error("error in entry", error)
+        }
+    }
+    const getTems = async () => {
+        try {
 
+            axios.defaults.headers.common['Authorization'] = token
+            const res = await axios.get("http://127.0.0.1:5050/tournament/setTeams/" + id)
+            console.log(res)
+        } catch (error) {
+            toast.error("error in entry", error)
+        }
     }
     return (
         <>
-            {value && (
+            <div className="container-fluid py-1  bg-light">
+                <div className="container">
+                    {value &&
+                        <div className="row shadow-sm p-2 rounded bg-danger" style={{ boxSizing: "border-box" }}>
+                            <div className="col-12 text-white p-3 d-flex gap-2">
+                                <div>
+                                    <img src={require("../assets/1712111636814_kZWMpzsgTYPr.jpg")} alt="" style={{ heigth: 100, width: 100 }} className="rounded" />
+                                </div>
+                                <div>
+                                    <p className="m-0 p-0 badge w-100 fw-semibold text-wrap " style={{
+                                        letterSpacing: 1,
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 1,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        maxWidth: '100%'
+                                    }}>
+                                        <span className="fs-4">
+                                            {value.name}
+                                        </span>
+                                        <span style={{ fontSize: 10 }}>
+                                            ({value.type_of_game})
+                                        </span>
+                                    </p>
+
+                                    <p className="m-0" style={{ fontSize: 14 }}>{value.address}
+                                        <span>
+                                            ({value.selectCity || value.selectCountry})
+                                        </span>
+                                    </p>
+
+                                    <hr className="m-0" />
+
+                                    <p>
+                                        <span style={{ fontSize: 10 }}>{new Date(value.start_date).toLocaleDateString('en-GB', {
+                                            day: 'numeric',
+                                            month: 'short',
+                                            year: 'numeric',
+                                        })}</span> - <span style={{ fontSize: 10 }}>{new Date(value.end_date).toLocaleDateString('en-GB', {
+                                            day: 'numeric',
+                                            month: 'short',
+                                            year: 'numeric',
+                                        })}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <button className="btn" onClick={handleentry}>Join</button>
+                </div>
+            </div >
+            {/* {value && (
                 <div className="container-sm p-5 py-2 ">
                     <div className="d-flex align-items-center border p-4 bg-danger rounded-3 border-info">
                         <div className="col-2">
@@ -95,7 +169,7 @@ const TournamentControl = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
         </>
     )

@@ -33,8 +33,6 @@ const UserProfile = () => {
             axios.defaults.headers.common['Authorization'] = token
             const res = await axios.put("http://127.0.0.1:5050/user/updateProfile", editedUser)
             toast.success("Profile updated successfully!");
-
-
         } catch (err) {
             toast.error(err.response.data.message);
         }

@@ -4,6 +4,7 @@ const LinkController = require("../controller/LinkController")
 
 
 route.get("/sideBar", LinkController.sidebar)
+route.get("/setIncriment", LinkController.setIncriment)
 
 
 module.exports = route;

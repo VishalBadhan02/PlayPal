@@ -1,18 +1,36 @@
 import { Link, useNavigate } from "react-router-dom";
 import Notification from "../Pages/user/notification";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import MobileNavbar from "./Media_Query_Control/mobileNavbar";
 const Pageheader = () => {
     const navigate = useNavigate();
+    const [nav, setNav] = useState(false)
+    const [phone_nav, setPhoneNav] = useState(false)
 
 
     const search = (e) => {
         navigate("?q=" + e)
 
     }
+
+    useEffect(() => {
+        handleNav()
+    }, [])
+
+    const handleNav = () => {
+        if (window.innerWidth <= 600) {
+            setPhoneNav(!phone_nav)
+            setNav(nav)
+        } else {
+            setNav(!nav)
+            setPhoneNav(phone_nav)
+        }
+    }
+
     return (
         <>
-            <div className="container-fluid box_shadow g-0 " >
+            {nav && <div className="container-fluid box_shadow g-0 " >
                 <div className=" w-100  z-1 text-white">
                     <div className="page_header border-bottom   "
                     >
@@ -122,7 +140,9 @@ const Pageheader = () => {
 
                     </div>
                 </div>
-            </div >
+            </div >}
+            {phone_nav && <MobileNavbar />}
+
         </>)
 }
 

@@ -29,7 +29,6 @@ const User_Team = () => {
                                 <p className="fw-bold">{user.userName}</p></div>
                             <div className="col-6">
                                 <img src={require("../../assets/bat.png")} style={{ width: 90 }} alt="" className="m-1 mt-0" />
-                                <input type="file" />
                                 <p className="fw-bold">{user.team || "--"}</p>
                             </div>
                         </div>

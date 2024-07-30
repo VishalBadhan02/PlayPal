@@ -12,13 +12,17 @@ const { CityModel } = require("../model/city")
 const { FriendModel } = require("../model/useFriends")
 const { ProductModel } = require("../model/product")
 const { AddTeamMemberModel } = require("../model/addTeamMember")
+const TournamentTeamsModel = require("../model/tournamentEntry")
 const { MessageModel } = require("../model/messages")
+const Bcrypt = require("bcrypt")
+const saltRounds = 16;
 const { request } = require("http")
 
 
 const getProfile = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ _id: req.user._id }).select(['email', 'userName', 'createdAt', 'address', 'phoneNumber', 'team'])
+        const user = await UserModel.findOne({ _id: req.user._id })
+        console.log(user)
         if (!user) {
             return res.status(402).json(reply.failure("User not exist "));
         }
@@ -66,7 +70,7 @@ const getCourse = async (req, res) => {
 
 const gettournament = async (req, res) => {
     try {
-        const tournament = await TournamentModel.find().sort({rank:"asc"})
+        const tournament = await TournamentModel.find().sort({ rank: "asc" })
         return res.json(tournament)
     } catch (err) {
         res.send(err.message)
@@ -83,7 +87,7 @@ const getcountry = async (req, res) => {
 
 const getstate = async (req, res) => {
     try {
-        const state = await StateModel.find({ code: req.params.country });
+        const state = await StateModel.find({ country_code: req.params.country });
         return res.json(state)
     } catch (err) {
         res.send(err.message)
@@ -92,7 +96,9 @@ const getstate = async (req, res) => {
 
 const getcity = async (req, res) => {
     try {
-        const city = await CityModel.find({ state_id: req.params.state });
+        const city = await CityModel.find({
+            state_id: req.params.state
+        });
         return res.json(city)
     } catch (err) {
         res.send(err.message)
@@ -196,7 +202,6 @@ const setteam = async (req, res) => {
             addressOfGround,
             pinCode,
             description,
-            teamMembers,
             members,
         } = req.body
 
@@ -216,6 +221,8 @@ const setteam = async (req, res) => {
             members,
             games
         })
+
+        const user = await UserModel.findOneAndUpdate({ _id: req.user._id }, { $set: { team: team._id } })
         team.save();
 
         return (
@@ -265,6 +272,7 @@ const handleApproval = async (req, res) => {
         return res.json(err)
     }
 }
+
 
 const getPlayingFriends = async (req, res) => {
     try {
@@ -348,12 +356,17 @@ const tournamentRegister = async (req, res) => {
             start_date,
             end_date,
             total_team_participation,
-            tournament_day,
-            location,
-            state,
-            city,
-            address
+            selectCountry,
+            selectState,
+            selectCity,
+            address,
+            password,
+            conform_password,
+            tournament_key
         } = req.body;
+
+        const encypted_password = await Bcrypt.hash(password, saltRounds);
+        const encypted_Conform_password = await Bcrypt.hash(conform_password, saltRounds);
         const tournament = new TournamentModel({
             name,
             type_of_game,
@@ -361,15 +374,17 @@ const tournamentRegister = async (req, res) => {
             start_date: new Date(start_date),
             end_date: new Date(end_date),
             total_team_participation,
-            tournament_day,
-            location,
-            state,
-            city,
-            address
+            selectCountry,
+            selectState,
+            selectCity,
+            address,
+            password: encypted_password,
+            conform_password: encypted_Conform_password,
+            tournament_key
         });
 
         await tournament.save();
-        return res.json({ message: "Tournament registered successfully", tournament });
+        return res.status(200).json({ message: "Tournament registered successfully", tournament });
     } catch (err) {
         return res.json({ message: "Error in tournament registration", error: err });
     }
@@ -444,5 +459,7 @@ const getJoinTeam = async (req, res) => {
         return res.json(err)
     }
 }
+
+
 
 module.exports = { getProfile, getGoals, getCourse, setteam, gettournament, getcountry, getstate, getcity, UpdateProfile, getFriends, getTournaments, getFriend, getProduct, handleDelete, getNotifications, getTournamentInfo, handleApproval, getUserFriends, getTeams, addFriend, getPlayers, tournamentRegister, getChatFriend, messageControl, getChat, getRecivedMessage, getUserId, searchFriends, searching, getJoinTeam, getPlayingFriends }

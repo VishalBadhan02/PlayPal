@@ -35,7 +35,10 @@ const GamesForPhone = () => {
                 <div className="container-fluid position-absolute  top-0">
                     <div className="row phonebtn py-2">
                         <div className="col-6 text-center  ">
-                            <button className="btn btn style text-white fw-medium" style={{ fontSize: 18 }}>Team Register</button>
+                            <Link to={"/teamcontrol"}>
+                                <button className="btn btn style text-white fw-medium" style={{ fontSize: 18 }}>Team Register</button>
+                            </Link>
+
                         </div>
                         <div className="col-6 text-center">
                             <Link to={"/tournaments"}>
@@ -45,7 +48,7 @@ const GamesForPhone = () => {
                             </Link>
                         </div>
                         <div className="col-6 text-center">
-                            <Link to={"/tournaments"}>
+                            <Link to={"/join-team"}>
                                 <button className="btn text-white" style={{ fontSize: 18 }}>
                                     Join Team
                                 </button>

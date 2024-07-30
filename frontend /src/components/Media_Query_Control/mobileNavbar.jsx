@@ -35,8 +35,8 @@ const MobileNavbar = () => {
     const setSideBar = async () => {
         try {
             const res = await axios.get("http://127.0.0.1:5050/links/sideBar")
-            console.log(res.data)
-            setLink(res.data);
+            const sidebarLinks = res.data.find(item => item.sidebar_links).sidebar_links;
+            setLink(sidebarLinks);
         } catch (err) {
             toast.error("Error in side bar", err)
         }
@@ -46,23 +46,35 @@ const MobileNavbar = () => {
             {token ?
                 <nav className="navbar bg pb-1   w-100" aria-label="Dark offcanvas navbar">
                     <div className="container-fluid ">
-                        <a className="navbar-brand p-0 pb-1" href="/">
+                        <a className="navbar-brand spin988 p-0 pb-1" href="/">
                             <img src={require("../../assets/final_logo_mode-removebg-preview.png")}
                                 style={{ width: 130, height: 30 }}
                                 className=" "
                             />
                         </a>
                         <div className="d-flex align-items-center">
+                            <button class="btn pe-1 " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                                <i className="pi  pi-search text-white"></i>
+                            </button>
 
-                            <i className="pi p-1 pi-search text-white"></i>
-                            {/* <input
-                                type="search"
-                                className="rounded-3 bg-dark border-0 "
-                                placeholder=" Search "
-                                aria-label="Search"
-                                aria-describedby="basic-addon1"
-                                onKeyUp={(e) => search(e.target.value)}
-                            /> */}
+                            <div class="offcanvas offcanvas-top bg-dark bg-opacity-75" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasTopLabel">
+                                        <input
+                                            type="search "
+                                            className="rounded-3 form-control  "
+                                            placeholder=" Search friend "
+                                            aria-label="Search"
+                                            aria-describedby="basic-addon1"
+                                            onKeyUp={(e) => search(e.target.value)}
+                                        />
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    ...
+                                </div>
+                            </div>
                             <Link to={"/profile"} className=" btn hoverbtn border-0  ">
                                 <i className="pi pi-user p-1 text-white"></i>
                             </Link>
@@ -100,10 +112,16 @@ const MobileNavbar = () => {
                             <div className="offcanvas-body ">
                                 <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     {link && link.map((value, index) =>
-                                        <li key={index} className="nav-item">
-                                            <a className="nav-link active text-white" aria-current="page" href={value.link}>
-                                                {value.name}
-                                            </a>
+                                        <li key={index} className="nav-item py-2">
+                                            <div class="dropdown">
+                                                <a class={`" text-white text-decoration-none ${value.dropdown_toggle} "`} href={value.link} role="button" data-bs-toggle={value.data_bs_toggle} aria-expanded="false">
+                                                    {value.name}
+                                                </a>
+                                                <ul class="dropdown-menu bg-dark border-0 ">
+                                                    {value && value.sub_type && value.sub_type.map((subvalue, index) =>
+                                                        <li key={index} ><a class="dropdown-item text-white" href={subvalue.link}>{subvalue.name}</a></li>)}
+                                                </ul>
+                                            </div>
                                         </li>
                                     )}
                                 </ul>
@@ -111,14 +129,6 @@ const MobileNavbar = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="row-1 d-flex border-top border-secondary ">
-                        <div className="col-9 d-flex align-items-center px-2 ">
-                          
-                        </div>
-                        <div className="col-3 text-end">
-                            <button className="btn text-white border-0">Logout</button>
-                        </div>
-                    </div> */}
                 </nav>
                 :
                 <nav className="navbar bg-dark" aria-label="Dark offcanvas navbar">

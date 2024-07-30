@@ -35,7 +35,6 @@ const { verifyJWT } = require('../services/JWT');
     router.post("/teamcontrol", verifyJWT, UserController.setteam);
     router.post("/tournamentRegister", verifyJWT, UserController.tournamentRegister)
     router.post("/postMessage", verifyJWT, UserController.messageControl)
-    router.get("/getTeams/:game", UserController.getJoinTeam)
 }
 
 {

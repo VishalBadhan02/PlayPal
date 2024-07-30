@@ -4,7 +4,11 @@ const Config = {
     "DATABASE": {
         URL: "mongodb://localhost:27017/Playpal"
     },
-    "JWTSECRETKEY": "VISHAL"
+    "JWTSECRETKEY": "VISHAL",
+    "RAZORPAY": {
+        KEY_ID: "rzp_test_N2eEp3EQAsP5qO",
+        PRIVATE_KEY: "cdPtzEfPiuCUb4gJK2Suimog"
+    }
 }
 
 

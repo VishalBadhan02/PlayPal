@@ -18,6 +18,22 @@
                 "link": ""
             },
             {
+                "name": "Tournament",
+                "link": "",
+                "data_bs_toggle": "dropdown",
+                "dropdown_toggle": "dropdown-toggle",
+                "sub_type": [
+                    {
+                        "name": "Register Tournament",
+                        "link": "tournament_control"
+                    },
+                    {
+                        "name": "Search Tournament",
+                        "link": ""
+                    }
+                ]
+            },
+            {
                 "name": "Score Card",
                 "link": ""
             },
@@ -32,6 +48,11 @@
             {
                 "name": "Join Team",
                 "link": "/join-team"
+            },
+            {
+                "name": "Log Out",
+                "link": "/home",
+                "img": ""
             }
         ]
     },
@@ -40,37 +61,38 @@
             {
                 "name": "Cricket",
                 "link": "",
-                "img": " ../assets/Remove background project.png"
+                "img": " ../assets/Remove background project.png",
+                "value": "cricket"
             },
             {
                 "name": "Football",
                 "link": "",
-                "img": ""
+                "img": "",
+                "value": "football"
             },
             {
                 "name": "Volleyball",
                 "link": "",
-                "img": ""
+                "img": "",
+                "value": "volleyball"
             },
             {
                 "name": "Badminton",
                 "link": "",
-                "img": ""
+                "img": "",
+                "value": "badminton"
             },
             {
                 "name": "Tennis ",
                 "link": "",
-                "img": ""
+                "img": "",
+                "value": "tennis"
             },
             {
                 "name": "Basketball",
                 "link": "",
-                "img": ""
-            },
-            {
-                "name": "Log Out",
-                "link": "/home",
-                "img": ""
+                "img": "",
+                "value": "basketball"
             }
         ]
     }
