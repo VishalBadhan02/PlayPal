@@ -21,7 +21,7 @@ const { request } = require("http")
 
 const getProfile = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ _id: req.user._id })
+        const user = await UserModel.find({ _id: req.user._id }).populate("team")
         console.log(user)
         if (!user) {
             return res.status(402).json(reply.failure("User not exist "));
@@ -223,6 +223,7 @@ const setteam = async (req, res) => {
         })
 
         const user = await UserModel.findOneAndUpdate({ _id: req.user._id }, { $set: { team: team._id } })
+        console.log(user)
         team.save();
 
         return (
@@ -315,7 +316,10 @@ const getUserFriends = async (req, res) => {
 
 const getTeams = async (req, res) => {
     try {
+        const game = req.params.game;
+        console.log(game)
         const Teams = await TeamModel.find();
+        console.log(Teams)
         return res.json(Teams)
     } catch (err) {
         return res.json(err)
@@ -453,7 +457,8 @@ const searching = async (req, res) => {
 const getJoinTeam = async (req, res) => {
     try {
         const game = req.params.game;
-        const Teams = await TeamModel.find({ games: game });
+        const Teams = await TeamModel.find();
+        console.log(Teams)
         return res.json(Teams)
     } catch (err) {
         return res.json(err)

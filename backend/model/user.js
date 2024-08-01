@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     password: String,
     team: {
         type: Object,
-        ref: "team"
+        ref: "teams"
     },
     friends: Object,
 },

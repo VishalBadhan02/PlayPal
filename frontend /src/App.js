@@ -14,8 +14,8 @@ import Profile from './Pages/user/profile';
 import SingleCourse from './components/college/singlecourse';
 import PagesHeader from './layouts/pagelayouts';
 import FriendList from './Pages/user/friendlist';
-import TeamControl from './Pages/user/teamcontrol';
-import TournamentControl from './Pages/tournament_control';
+import TeamControl from './Pages/teamControl/team_registeration/teamcontrol';
+import TournamentControl from './components/tournamnet_features/tournament_control';
 import TeamMangement from './Pages/team_managemet';
 import FindFriend from './Pages/user/findfriends';
 import Feedback from './Pages/footorInfo/feedback';
@@ -23,13 +23,12 @@ import About from './Pages/footorInfo/about';
 import Forgot from './components/frogot';
 import Product from './components/shopping/product';
 import Shop from './components/shopping/shop';
-import Cricket from './Pages/teamList/cricket';
-import Tournament_control from './components/tournamnet_features/tournament_control';
+import Cricket from './Pages/teamControl/set_team/setToPlay';
+import Tournament_control from './components/tournamnet_features/tournament_register/tournament_control';
 import ChatBox from './Pages/user/chatbox';
 import Friends from './components/search/friends';
 import JoinTeam from './components/JoinTeam/joinTeam';
-import Matches from './Pages/matches';
-import PhoneTournament from './components/tournamnet_features/tournament_control_for_phone';
+import PhoneTournament from './components/tournamnet_features/tournament_set/tournament_control_for_phone';
 
 
 
@@ -73,7 +72,7 @@ function App() {
               <Route path="/chatbox/:value.request._id" element={<ChatBox />} />
               <Route path="/search" element={<Friends />} />
               <Route path="/join-team" element={<JoinTeam />} />
-              
+
             </Route>
 
             <Route element={<Pagelayout />}>

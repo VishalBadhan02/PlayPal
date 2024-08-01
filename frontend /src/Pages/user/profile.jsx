@@ -8,10 +8,11 @@ import FriendList from "./friendlist";
 import Request from "./request";
 import User_Team from "./users_team";
 import FindFriend from "./findfriends";
+import "../../components/MediaQuery/home.css"
 
 const Profile = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState([]);
     const [showProfile, setShowProfile] = useState(false);
     const [showRequest, setShowRequest] = useState(false);
     const [showFriends, setShowFriends] = useState(false);
@@ -76,14 +77,16 @@ const Profile = () => {
         <>
             <div className="container-fluid ">
                 <div className="row p-2">
-                    <div className="col-3 p-0  box_shadow " style={{ background: "#f5f5f5" }}>
-                        <div className="row p-4 text-center  rounded border-bottom-0 ">
-                            <i onMouseOver={handleuser} className="pi pi-user  fs-1 p-3 " ></i>
-                            <br />
-                            <p className="m-0 fw-medium mt-2 ">{user.userName}</p>
-                            <p className="text-secondary ">{user.email}</p>
-                        </div>
-                        <div className="border-top p-3">
+                    <div className="col-3 p-0  box_shadow profile_query" style={{ background: "#f5f5f5" }}>
+                        {user && user.map((value, index) =>
+                            <div className="row p-4 text-center  rounded border-bottom-0 ">
+                                <i onMouseOver={handleuser} className="pi pi-user  fs-1 p-3 " ></i>
+                                <br />
+                                <p className="m-0 fw-medium mt-2 ">{value.userName}</p>
+                                <p className="text-secondary ">{value.email}</p>
+                            </div>)}
+
+                        <div className="border-top p-3 ">
                             <ul className=" list-group-numbered text-start p-1 ps-2 ">
                                 <li className="d-flex gap-1 border-bottom p-2   ">
                                     <i className="pi pi-user-edit fs-4"></i>

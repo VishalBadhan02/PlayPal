@@ -1,13 +1,13 @@
 import 'primeicons/primeicons.css';
 import Goals from "./college/goals";
 import { Link, useNavigate } from "react-router-dom";
-import Tournament from "../Pages/tables/tournaments";
+
 import Location from "../Pages/tables/location";
 import Product from './shopping/product';
 import { useEffect, useState } from 'react';
 import toast from "react-hot-toast";
-import "./MediaQuery/header.css"
-import PhoneTournament from './tournamnet_features/tournament_control_for_phone';
+import "./MediaQuery/home.css"
+import PhoneTournament from './tournamnet_features/tournament_set/tournament_control_for_phone';
 import axios from 'axios';
 import GamesForPhone from './Media_Query_Control/ForPhone/gamesForPhone';
 
@@ -146,7 +146,7 @@ const Home = () => {
                     </div>
                     {visible && <div className="position-absolute  shaded1 z-0   top-0 w-100" >
                     </div>}
-                    <div className={`"container-fluid position-absolute z-1 p-5 mt-5  top-0"`} style={{ top: 0 }}>
+                    <div className={`"container-fluid position-absolute z-5 p-5 mt-5  top-0"`} style={{ top: 0 }}>
                         <div className="row">
                             <div className="col-10 p-5 d-flex align-items-center ">
                                 <div className="row mt-5">

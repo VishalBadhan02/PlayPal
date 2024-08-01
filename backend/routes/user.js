@@ -21,7 +21,7 @@ const { verifyJWT } = require('../services/JWT');
     router.get("/yourFriends", verifyJWT, UserController.getUserFriends)
     router.get("/playingOnes", verifyJWT, UserController.getPlayingFriends)
     router.get("/getProduct", UserController.getProduct)
-    router.get("/getTeam", UserController.getTeams)
+    router.get("/getTeams/:game", UserController.getJoinTeam)
     router.get("/getPlayer", verifyJWT, UserController.getPlayers)
     router.get("/getChatFriend/:friendId", UserController.getChatFriend)
     router.get("/getChat/:friendId", UserController.getChat)

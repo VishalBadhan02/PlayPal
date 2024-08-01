@@ -1,0 +1,99 @@
+[
+    {
+        "sidebar_links": [
+            {
+                "name": "Home",
+                "link": "/"
+            },
+            {
+                "name": "Shopping",
+                "link": "/shopping"
+            },
+            {
+                "name": "Leaderboard",
+                "link": ""
+            },
+            {
+                "name": "Your Points",
+                "link": ""
+            },
+            {
+                "name": "Tournament",
+                "link": "",
+                "data_bs_toggle": "dropdown",
+                "dropdown_toggle": "dropdown-toggle",
+                "sub_type": [
+                    {
+                        "name": "Register Tournament",
+                        "link": "tournament_control"
+                    },
+                    {
+                        "name": "Search Tournament",
+                        "link": ""
+                    }
+                ]
+            },
+            {
+                "name": "Score Card",
+                "link": "/scorecard"
+            },
+            {
+                "name": "Manage Team",
+                "link": "/team-management"
+            },
+            {
+                "name": "Scheduled Matches",
+                "link": ""
+            },
+            {
+                "name": "Join Team",
+                "link": "/join-team"
+            },
+            {
+                "name": "Log Out",
+                "link": "/home",
+                "img": ""
+            }
+        ]
+    },
+    {
+        "games_link": [
+            {
+                "name": "Cricket",
+                "link": "",
+                "img": " ../assets/Remove background project.png",
+                "value": "cricket"
+            },
+            {
+                "name": "Football",
+                "link": "",
+                "img": "",
+                "value": "football"
+            },
+            {
+                "name": "Volleyball",
+                "link": "",
+                "img": "",
+                "value": "volleyball"
+            },
+            {
+                "name": "Badminton",
+                "link": "",
+                "img": "",
+                "value": "badminton"
+            },
+            {
+                "name": "Tennis ",
+                "link": "",
+                "img": "",
+                "value": "tennis"
+            },
+            {
+                "name": "Basketball",
+                "link": "",
+                "img": "",
+                "value": "basketball"
+            }
+        ]
+    }
+]

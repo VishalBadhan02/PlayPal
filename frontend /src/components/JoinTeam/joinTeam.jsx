@@ -14,6 +14,7 @@ const JoinTeam = () => {
         const game = `${e.target.value}`
         try {
             const res = await axios.get("http://127.0.0.1:5050/user/getTeams/" + game)
+            console.log(res.data)
             setTeam(res.data)
         } catch (err) {
             toast.error("error in join team", err)
@@ -58,7 +59,7 @@ const JoinTeam = () => {
 
 
 
-                            {team && team.map((value, index) => (
+                            {/* {team && team.map((value, index) =>
                                 <>
                                     <tbody className="border-1 border-secondary" key={index}>
                                         <tr >
@@ -103,12 +104,12 @@ const JoinTeam = () => {
                                         </tr>
                                     </tbody>
                                 </>
-                            ))}
+                            )}
                             {!team && (
                                 <>
                                     Loading
                                 </>
-                            )}
+                            )} */}
 
 
 

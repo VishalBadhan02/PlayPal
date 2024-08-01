@@ -96,8 +96,8 @@ const PcNavbar = () => {
                     <div className="sidebar media_sidebar  align-items-center ">
                         <ul className=" p-1 d-flex text-secondary list-group-numbered  m-0 w-100  ">
                             {link && link.map((value, index) =>
-                                <li key={index} className="nav-item px-3">
-                                    <div class="dropdown">
+                                <li key={index} className="nav-item px-3 ">
+                                    <div class="dropdown hoverbtn">
                                         <a class={`" text-white text-decoration-none ${value.dropdown_toggle} "`} href={value.link} role="button" data-bs-toggle={value.data_bs_toggle} aria-expanded="false">
                                             {value.name}
                                         </a>

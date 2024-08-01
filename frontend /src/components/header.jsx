@@ -14,7 +14,7 @@ const Header = () => {
 
     useEffect(() => {
         handlemedia();
-    },[])
+    }, [])
 
     const handlemedia = () => {
         if (window.innerWidth <= 600) {
@@ -31,6 +31,7 @@ const Header = () => {
         <>
             {forPc && <PcNavbar />}
             {offCanvas && <MobileNavbar />}
+
         </>
     )
 }

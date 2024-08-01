@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Notification from "../Pages/user/notification";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import "./MediaQuery/pageHeader.css"
 import MobileNavbar from "./Media_Query_Control/mobileNavbar";
 const Pageheader = () => {
     const navigate = useNavigate();
@@ -11,7 +12,6 @@ const Pageheader = () => {
 
     const search = (e) => {
         navigate("?q=" + e)
-
     }
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Pageheader = () => {
 
     return (
         <>
-            {nav && <div className="container-fluid box_shadow g-0 " >
+            <div className="container-fluid nav_bar box_shadow g-0 " >
                 <div className=" w-100  z-1 text-white">
                     <div className="page_header border-bottom   "
                     >
@@ -140,8 +140,11 @@ const Pageheader = () => {
 
                     </div>
                 </div>
-            </div >}
-            {phone_nav && <MobileNavbar />}
+            </div >
+            <div className="nav_bar_phone">
+                <MobileNavbar />
+            </div>
+
 
         </>)
 }

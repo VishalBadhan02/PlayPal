@@ -2,7 +2,7 @@ const { TournamentModel } = require("../model/tournament")
 
 const sidebar = async (req, res) => {
     try {
-        const data = require("../sidebar.json")
+        const data = require("../jsonFolder/sidebar.json")
         return res.json(data)
     } catch (error) {
         return res.json({ msg: "Link not available" }, error)
